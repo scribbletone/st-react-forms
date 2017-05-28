@@ -3,28 +3,6 @@ import PropTypes from 'prop-types';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class TextArea extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    errors: PropTypes.object,
-    label: PropTypes.string,
-    labelClassName: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    wrapperClassName: PropTypes.string,
-    newValue: PropTypes.string
-  };
-  static defaultProps = {
-    errors: {},
-    format: 'none',
-    defaultValue: '',
-    newValue: null
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -84,4 +62,27 @@ export default class TextArea extends React.Component {
       </div>
     );
   }
+}
+
+TextArea.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+  ]),
+  errors: PropTypes.object,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  name: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  wrapperClassName: PropTypes.string,
+  newValue: PropTypes.string
+};
+TextArea.defaultProps = {
+  errors: {},
+  format: 'none',
+  defaultValue: '',
+  newValue: null
 }

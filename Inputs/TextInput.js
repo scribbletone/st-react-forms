@@ -12,31 +12,6 @@ Numeral.register('locale', 'en-custom', {
 Numeral.locale('en-custom');
 
 export default class TextInput extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    errors: PropTypes.object,
-    format: PropTypes.string,
-    label: PropTypes.string,
-    labelClassName: PropTypes.string,
-    maxLength: PropTypes.number,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    placeholder: PropTypes.string,
-    wrapperClassName: PropTypes.string,
-    newValue: PropTypes.string
-  };
-  static defaultProps = {
-    errors: {},
-    format: 'none',
-    defaultValue: '',
-    newValue: null
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -142,4 +117,30 @@ export default class TextInput extends React.Component {
       </div>
     );
   }
+}
+
+TextInput.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+  ]),
+  errors: PropTypes.object,
+  format: PropTypes.string,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  maxLength: PropTypes.number,
+  name: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  placeholder: PropTypes.string,
+  wrapperClassName: PropTypes.string,
+  newValue: PropTypes.string
+};
+TextInput.defaultProps = {
+  errors: {},
+  format: 'none',
+  defaultValue: '',
+  newValue: null
 }

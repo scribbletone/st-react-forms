@@ -3,27 +3,6 @@ import PropTypes from 'prop-types';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class Select extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    errors: PropTypes.object,
-    label: PropTypes.string,
-    labelClassName: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    options: PropTypes.array,
-    prompt: PropTypes.string,
-    wrapperClassName: PropTypes.string
-  };
-  static defaultProps = {
-    errors: {},
-    labelClassName: 'select',
-    wrapperClassName: 'input select',
-    defaultValue: 'default'
-  }
   constructor(props) {
     super(props);
   }
@@ -70,4 +49,26 @@ export default class Select extends React.Component {
       </div>
     );
   }
+}
+
+Select.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  errors: PropTypes.object,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  prompt: PropTypes.string,
+  wrapperClassName: PropTypes.string
+};
+Select.defaultProps = {
+  errors: {},
+  labelClassName: 'select',
+  wrapperClassName: 'input select',
+  defaultValue: 'default'
 }

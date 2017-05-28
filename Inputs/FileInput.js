@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FieldErrors from '../Errors/FieldErrors';
 
-export default class BooleanInput extends React.Component {
+export default class FileInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +57,7 @@ export default class BooleanInput extends React.Component {
   }
 }
 
-BooleanInput.propTypes = {
+FileInput.propTypes = {
   className: PropTypes.string,
   defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -74,7 +74,7 @@ BooleanInput.propTypes = {
   wrapperClassName: PropTypes.string,
   newValue: PropTypes.string
 };
-BooleanInput.defaultProps = {
+FileInput.defaultProps = {
   errors: {},
   format: 'none',
   defaultValue: '',

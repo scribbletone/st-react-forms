@@ -3,28 +3,6 @@ import PropTypes from 'prop-types';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class RadioOptions extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    errors: PropTypes.object,
-    label: PropTypes.string,
-    labelClassName: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    wrapperClassName: PropTypes.string,
-    newValue: PropTypes.string,
-    options: PropTypes.array
-  };
-  static defaultProps = {
-    errors: {},
-    format: 'none',
-    defaultValue: '',
-    newValue: null,
-    options: []
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -86,4 +64,27 @@ export default class RadioOptions extends React.Component {
       </div>
     );
   }
+}
+
+RadioOptions.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+  ]),
+  errors: PropTypes.object,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  wrapperClassName: PropTypes.string,
+  newValue: PropTypes.string,
+  options: PropTypes.array
+};
+RadioOptions.defaultProps = {
+  errors: {},
+  format: 'none',
+  defaultValue: '',
+  newValue: null,
+  options: []
 }

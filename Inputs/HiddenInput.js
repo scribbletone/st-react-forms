@@ -1,17 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class SelectInput extends React.Component {
-  static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    name: PropTypes.string.isRequired,
-  };
-  static defaultProps = {
-    defaultValue: ''
-  }
+export default class HiddenInput extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -24,4 +14,15 @@ export default class SelectInput extends React.Component {
       />
     );
   }
+}
+
+HiddenInput.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  name: PropTypes.string.isRequired,
+};
+HiddenInput.defaultProps = {
+  defaultValue: ''
 }
