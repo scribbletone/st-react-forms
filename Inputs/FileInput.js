@@ -27,28 +27,20 @@ export default class FileInput extends React.Component {
     let errors = this.props.errors[this.props.name];
     let errorClassName = (errors ? ' field_with_errors ' : '');
     return (
-      <div className={`form-input boolean-input--wrapper input-${this.props.name} ${errorClassName}`}>
+      <div className={`form-input file-input--wrapper input-${this.props.name} ${errorClassName}`}>
 
         {this.props.label ? 
-          <div className={`form-label boolean-input--label ${this.props.labelClassName}`}>
+          <label 
+            htmlFor={this.props.name}
+            className={`form-label file-input--label ${this.props.labelClassName}`}>
             {this.props.label}
-          </div>
+          </label>
         : null }
-        <label 
-          htmlFor={this.props.name}>
-          <input 
-            type="checkbox" 
-            name={this.props.name} 
-            className='boolean-input'
-            value={this.props.defaultValue}
-            checked={this.state.value}
-            onChange={(e)=>{this.handleChange(e)}} 
-          />
-          <span 
-            className="boolean-input--inline-label">
-              {this.props.inlineLabel}
-          </span>
-        </label>
+        <input 
+          type="file" 
+          name={this.props.name}
+          className={`file-input ${this.props.className}`}
+          onChange={(e)=>{this.handleChange(e)}} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />
