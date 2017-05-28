@@ -1,0 +1,11 @@
+{
+  "name": "st-react-forms",
+  "version": "0.1.0",
+  "description": "Reusable form elements and validation system for react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Scribble Tone",
+  "license": "ISC"
+}
