@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Validations from '../../Utils/Validations';
 
 export default class FieldErrors extends React.Component {
   static propTypes = {

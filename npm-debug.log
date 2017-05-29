@@ -14,29 +14,29 @@
 7 silly cache add   rawSpec: '.',
 7 silly cache add   spec: '/Users/traviskochel/github/st-react-forms',
 7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory /Users/traviskochel/.npm/st-react-forms/0.1.3/package.tgz not in flight; packing
-9 info lifecycle st-react-forms@0.1.3~prepublish: st-react-forms@0.1.3
-10 silly lifecycle st-react-forms@0.1.3~prepublish: no script for prepublish, continuing
-11 verbose tar pack [ '/Users/traviskochel/.npm/st-react-forms/0.1.3/package.tgz',
+8 verbose addLocalDirectory /Users/traviskochel/.npm/st-react-forms/0.1.4/package.tgz not in flight; packing
+9 info lifecycle st-react-forms@0.1.4~prepublish: st-react-forms@0.1.4
+10 silly lifecycle st-react-forms@0.1.4~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ '/Users/traviskochel/.npm/st-react-forms/0.1.4/package.tgz',
 11 verbose tar pack   '/Users/traviskochel/github/st-react-forms' ]
-12 verbose tarball /Users/traviskochel/.npm/st-react-forms/0.1.3/package.tgz
+12 verbose tarball /Users/traviskochel/.npm/st-react-forms/0.1.4/package.tgz
 13 verbose folder /Users/traviskochel/github/st-react-forms
-14 verbose addLocalTarball adding from inside cache /Users/traviskochel/.npm/st-react-forms/0.1.3/package.tgz
-15 silly cache afterAdd st-react-forms@0.1.3
-16 verbose afterAdd /Users/traviskochel/.npm/st-react-forms/0.1.3/package/package.json not in flight; writing
-17 verbose afterAdd /Users/traviskochel/.npm/st-react-forms/0.1.3/package/package.json written
+14 verbose addLocalTarball adding from inside cache /Users/traviskochel/.npm/st-react-forms/0.1.4/package.tgz
+15 silly cache afterAdd st-react-forms@0.1.4
+16 verbose afterAdd /Users/traviskochel/.npm/st-react-forms/0.1.4/package/package.json not in flight; writing
+17 verbose afterAdd /Users/traviskochel/.npm/st-react-forms/0.1.4/package/package.json written
 18 silly publish { name: 'st-react-forms',
-18 silly publish   version: '0.1.3',
+18 silly publish   version: '0.1.4',
 18 silly publish   description: 'Reusable form elements and validation system for react',
 18 silly publish   main: 'entry.js',
 18 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
 18 silly publish   author: { name: 'Scribble Tone' },
 18 silly publish   license: 'ISC',
 18 silly publish   dependencies: { numeral: '^2.0.6' },
-18 silly publish   gitHead: 'cd644efb13d0edc9ab993a7efcffa1c2fdc28d47',
+18 silly publish   gitHead: 'c49f544db1c08489817af9502656baea3432a985',
 18 silly publish   readme: 'ERROR: No README data found!',
-18 silly publish   _id: 'st-react-forms@0.1.3',
-18 silly publish   _shasum: '4b95e834eb67225614d954c48836710b44fb6819',
+18 silly publish   _id: 'st-react-forms@0.1.4',
+18 silly publish   _shasum: '7233c87f00a7c6439abf746a3907ef4e5dfb723c',
 18 silly publish   _from: '.' }
 19 verbose getPublishConfig undefined
 20 silly mapToRegistry name st-react-forms
@@ -44,29 +44,29 @@
 22 silly mapToRegistry registry https://registry.npmjs.org/
 23 silly mapToRegistry uri https://registry.npmjs.org/st-react-forms
 24 verbose publish registryBase https://registry.npmjs.org/
-25 silly publish uploading /Users/traviskochel/.npm/st-react-forms/0.1.3/package.tgz
+25 silly publish uploading /Users/traviskochel/.npm/st-react-forms/0.1.4/package.tgz
 26 verbose request uri https://registry.npmjs.org/st-react-forms
 27 verbose request sending authorization for write operation
-28 info attempt registry request try #1 at 2:25:31 PM
+28 info attempt registry request try #1 at 2:26:15 PM
 29 verbose request using bearer token for auth
-30 verbose request id 48df557374c30cf6
+30 verbose request id 1dcec8d0eed8ba61
 31 http request PUT https://registry.npmjs.org/st-react-forms
 32 http 403 https://registry.npmjs.org/st-react-forms
 33 verbose headers { 'content-type': 'application/json',
 33 verbose headers   'cache-control': 'max-age=300',
 33 verbose headers   'content-length': '95',
 33 verbose headers   'accept-ranges': 'bytes',
-33 verbose headers   date: 'Mon, 29 May 2017 21:25:31 GMT',
+33 verbose headers   date: 'Mon, 29 May 2017 21:26:16 GMT',
 33 verbose headers   via: '1.1 varnish',
 33 verbose headers   connection: 'keep-alive',
-33 verbose headers   'x-served-by': 'cache-sea1039-SEA',
+33 verbose headers   'x-served-by': 'cache-sea1026-SEA',
 33 verbose headers   'x-cache': 'MISS',
 33 verbose headers   'x-cache-hits': '0',
-33 verbose headers   'x-timer': 'S1496093132.897317,VS0,VE67',
+33 verbose headers   'x-timer': 'S1496093176.230025,VS0,VE76',
 33 verbose headers   vary: 'Accept-Encoding' }
 34 verbose request invalidating /Users/traviskochel/.npm/registry.npmjs.org/st-react-forms on PUT
 35 error publish Failed PUT 403
-36 verbose stack Error: "You cannot publish over the previously published version 0.1.3." : st-react-forms
+36 verbose stack Error: "You cannot publish over the previously published version 0.1.4." : st-react-forms
 36 verbose stack     at makeError (/Users/traviskochel/.nvm/versions/node/v5.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
 36 verbose stack     at CachingRegistryClient.<anonymous> (/Users/traviskochel/.nvm/versions/node/v5.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
 36 verbose stack     at Request._callback (/Users/traviskochel/.nvm/versions/node/v5.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
@@ -85,7 +85,7 @@
 42 error node v5.3.0
 43 error npm  v3.5.2
 44 error code E403
-45 error "You cannot publish over the previously published version 0.1.3." : st-react-forms
+45 error "You cannot publish over the previously published version 0.1.4." : st-react-forms
 46 error If you need help, you may report this error at:
 46 error     <https://github.com/npm/npm/issues>
 47 verbose exit [ 1, true ]
