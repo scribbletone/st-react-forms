@@ -12,6 +12,8 @@ import TextInput from './Inputs/TextInput';
 import FieldErrors from './Errors/FieldErrors';
 import GenericFormErrors from './Errors/GenericFormErrors';
 
+import InputList from './Templates/InputList';
+
 export {
   AjaxSelectInput,
   BooleanInput,
