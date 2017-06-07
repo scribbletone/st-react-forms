@@ -3,28 +3,6 @@ import PropTypes from 'prop-types';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class BareSelectInput extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    errors: PropTypes.object,
-    label: PropTypes.string,
-    labelClassName: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    options: PropTypes.array,
-    prompt: PropTypes.string,
-    wrapperClassName: PropTypes.string
-  };
-  static defaultProps = {
-    errors: {},
-    labelClassName: '',
-    className: '',
-    wrapperClassName: '',
-    defaultValue: 'default'
-  }
   constructor(props) {
     super(props);
   }
@@ -70,4 +48,27 @@ export default class BareSelectInput extends React.Component {
       </div>
     );
   }
+}
+
+BareSelectInput.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  errors: PropTypes.object,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  prompt: PropTypes.string,
+  wrapperClassName: PropTypes.string
+};
+BareSelectInput.defaultProps = {
+  errors: {},
+  labelClassName: '',
+  className: '',
+  wrapperClassName: '',
+  defaultValue: 'default'
 }

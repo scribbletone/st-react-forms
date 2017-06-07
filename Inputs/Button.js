@@ -2,11 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Button extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    onClick: PropTypes.func,
-    submitting: PropTypes.bool
-  };
   constructor(props) {
     super(props);
   }
@@ -25,3 +20,8 @@ export default class Button extends React.Component {
     );
   }
 }
+Button.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  submitting: PropTypes.bool
+};

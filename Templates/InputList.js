@@ -68,3 +68,19 @@ InputList.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   data: PropTypes.object
 };
+
+/* 
+Example field input
+[
+  {
+    name: 'name',
+    componentName: 'TextInput',
+    label: 'Name'
+  },
+  {
+    name: 'description',
+    componentName: 'TextArea',
+    label: 'Description'
+  }
+]
+*/
