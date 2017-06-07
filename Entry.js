@@ -25,5 +25,6 @@ export {
   TextArea,
   TextInput,
   FieldErrors,
-  GenericFormErrors
+  GenericFormErrors,
+  InputList
 }
