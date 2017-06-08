@@ -72,7 +72,8 @@ RadioOptions.propTypes = {
   className: PropTypes.string,
   defaultValue: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
+      PropTypes.number,
+      PropTypes.bool
   ]),
   errors: PropTypes.object,
   label: PropTypes.string,
