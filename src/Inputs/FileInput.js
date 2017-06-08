@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class FileInput extends React.Component {
@@ -41,6 +42,7 @@ export default class FileInput extends React.Component {
           name={this.props.name}
           className={`file-input ${this.props.className}`}
           onChange={(e)=>{this.handleChange(e)}} />
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />

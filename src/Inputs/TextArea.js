@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class TextArea extends React.Component {
@@ -55,7 +56,9 @@ export default class TextArea extends React.Component {
           value={this.state.value}
           onFocus={(e)=>this.handleFocus(e)}
           onBlur={(e)=>this.handleBlur(e)}
-          onChange={(e)=>{this.handleChange(e)}} />
+          onChange={(e)=>{this.handleChange(e)}}
+          placeholder={this.props.placeholder} />
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />

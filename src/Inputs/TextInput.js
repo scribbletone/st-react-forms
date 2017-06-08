@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import _ from 'lodash';
 import Numeral from 'numeral';
 import FieldErrors from '../Errors/FieldErrors';
@@ -111,6 +112,7 @@ export default class TextInput extends React.Component {
           onBlur={(e)=>this.handleBlur(e)}
           onChange={(e)=>{this.handleChange(e)}}
           placeholder={this.props.placeholder} />
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />

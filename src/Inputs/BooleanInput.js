@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class BooleanInput extends React.Component {
@@ -49,6 +50,7 @@ export default class BooleanInput extends React.Component {
               {this.props.inlineLabel}
           </span>
         </label>
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />

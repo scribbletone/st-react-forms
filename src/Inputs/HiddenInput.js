@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 
 export default class HiddenInput extends React.Component {
   constructor(props) {

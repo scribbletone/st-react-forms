@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 import ReactSelect from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -66,6 +67,7 @@ export default class AjaxSelectInput extends React.Component {
           valueKey={this.props.valueKey}
           valueRenderer={this.props.renderValue}
         />
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />

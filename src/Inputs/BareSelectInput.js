@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class BareSelectInput extends React.Component {
@@ -42,6 +43,7 @@ export default class BareSelectInput extends React.Component {
           <option disabled value='default'>{this.props.prompt}</option>
           {this.renderOptions()}
         </select>
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />
