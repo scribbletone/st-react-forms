@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class GenericFormErrors extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    errors: PropTypes.object
-  };
   constructor(props) {
     super(props);
   }
@@ -21,3 +17,7 @@ export default class GenericFormErrors extends React.Component {
     }
   }
 }
+GenericFormErrors.propTypes = {
+  className: PropTypes.string,
+  errors: PropTypes.object
+};

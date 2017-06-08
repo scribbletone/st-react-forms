@@ -51,6 +51,7 @@ export default class TextArea extends React.Component {
           </label>
         : null }
         <textarea 
+          autoFocus={this.props.autoFocus}
           name={this.props.name}
           className={`text-area ${this.props.className}`}
           value={this.state.value}
@@ -68,6 +69,7 @@ export default class TextArea extends React.Component {
 }
 
 TextArea.propTypes = {
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -84,6 +86,7 @@ TextArea.propTypes = {
   newValue: PropTypes.string
 };
 TextArea.defaultProps = {
+  autoFocus: false,
   errors: {},
   format: 'none',
   defaultValue: '',

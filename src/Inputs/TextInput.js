@@ -104,6 +104,7 @@ export default class TextInput extends React.Component {
           </label>
         : null }
         <input 
+          autoFocus={this.props.autoFocus}
           type='text'
           name={this.props.name}
           className={`text-input ${this.props.className}`}
@@ -122,6 +123,7 @@ export default class TextInput extends React.Component {
 }
 
 TextInput.propTypes = {
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -141,6 +143,7 @@ TextInput.propTypes = {
   newValue: PropTypes.string
 };
 TextInput.defaultProps = {
+  autoFocus: false,
   errors: {},
   format: 'none',
   defaultValue: '',
