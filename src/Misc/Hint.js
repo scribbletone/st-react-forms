@@ -12,6 +12,8 @@ export default class Hint extends React.Component {
           {this.props.text}
         </div>
       );
+    } else {
+      return null;
     }
   }
 }
