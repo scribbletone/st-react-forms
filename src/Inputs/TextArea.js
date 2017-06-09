@@ -54,7 +54,7 @@ export default class TextArea extends React.Component {
           autoFocus={this.props.autoFocus}
           name={this.props.name}
           className={`text-area ${this.props.className}`}
-          value={this.state.value}
+          value={this.state.value || ''}
           onFocus={(e)=>this.handleFocus(e)}
           onBlur={(e)=>this.handleBlur(e)}
           onChange={(e)=>{this.handleChange(e)}}
@@ -90,5 +90,5 @@ TextArea.defaultProps = {
   errors: {},
   format: 'none',
   defaultValue: '',
-  newValue: null
+  newValue: ''
 }

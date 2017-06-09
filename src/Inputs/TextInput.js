@@ -108,7 +108,7 @@ export default class TextInput extends React.Component {
           type='text'
           name={this.props.name}
           className={`text-input ${this.props.className}`}
-          value={this.state.focused ? this.state.value : this.state.formattedValue }
+          value={(this.state.focused ? this.state.value : this.state.formattedValue) || ''}
           onFocus={(e)=>this.handleFocus(e)}
           onBlur={(e)=>this.handleBlur(e)}
           onChange={(e)=>{this.handleChange(e)}}
@@ -147,5 +147,5 @@ TextInput.defaultProps = {
   errors: {},
   format: 'none',
   defaultValue: '',
-  newValue: null
+  newValue: ''
 }
