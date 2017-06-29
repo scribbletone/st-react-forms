@@ -105,7 +105,7 @@ export default class TextInput extends React.Component {
         : null }
         <input 
           autoFocus={this.props.autoFocus}
-          type='text'
+          type={this.props.password ? 'password' : 'text'}
           name={this.props.name}
           className={`text-input ${this.props.className}`}
           value={(this.state.focused ? this.state.value : this.state.formattedValue) || ''}
@@ -138,9 +138,10 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
+  password: PropTypes.bool,
   placeholder: PropTypes.string,
   wrapperClassName: PropTypes.string,
-  newValue: PropTypes.string
+  newValue: PropTypes.string,
 };
 TextInput.defaultProps = {
   autoFocus: false,

@@ -3,6 +3,7 @@ import BareSelectInput from './Inputs/BareSelectInput';
 import BooleanInput from './Inputs/BooleanInput';
 import FileInput from './Inputs/FileInput';
 import HiddenInput from './Inputs/HiddenInput';
+import PasswordInput from './Inputs/PasswordInput';
 import RadioOptions from './Inputs/RadioOptions';
 import SelectInput from './Inputs/SelectInput';
 import TextArea from './Inputs/TextArea';
@@ -23,6 +24,7 @@ export {
   Button,
   FileInput,
   HiddenInput,
+  PasswordInput,
   RadioOptions,
   SelectInput,
   TextArea,

@@ -4,6 +4,7 @@ import AjaxSelectInput from '../Inputs/AjaxSelectInput';
 import BooleanInput from '../Inputs/BooleanInput';
 import FileInput from '../Inputs/FileInput';
 import HiddenInput from '../Inputs/HiddenInput';
+import PasswordInput from '../Inputs/PasswordInput';
 import RadioOptions from '../Inputs/RadioOptions';
 import SelectInput from '../Inputs/SelectInput';
 import TextArea from '../Inputs/TextArea';
@@ -24,6 +25,8 @@ export default class InputList extends React.Component {
         return FileInput;
       case 'HiddenInput':
         return HiddenInput;
+      case 'PasswordInput':
+        return PasswordInput;
       case 'RadioOptions':
         return RadioOptions;
       case 'SelectInput':
