@@ -47,6 +47,7 @@ export default class InputList extends React.Component {
           key={field.name}
           name={field.name}
           label={field.label}
+          hint={field.hint}
           inlineLabel={field.inlineLabel}
           onChange={(v)=>{this.props.onInputChange(field.name, v, field.dataType)}}
           onItemSelect={(v)=>{this.props.onItemSelect(field.name, v)}}
