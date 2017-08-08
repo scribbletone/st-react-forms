@@ -24,6 +24,7 @@ export {
   Button,
   FileInput,
   HiddenInput,
+  Hint,
   PasswordInput,
   RadioOptions,
   SelectInput,

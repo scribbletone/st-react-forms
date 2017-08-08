@@ -22,16 +22,17 @@ export default class SelectInput extends React.Component {
   render() {
     let errors = this.props.errors[this.props.name];
     let errorClassName = (errors ? ' field_with_errors ' : '');
+    let Cmp = (this.props.creatable ? ReactSelect.Creatable : ReactSelect);
     return (
       <div className={`form-input select-input--wrapper input-${this.props.name} ${errorClassName} ${this.props.wrapperClassName}`}>
-        {this.props.label ? 
+         {this.props.label ? 
           <label 
             htmlFor={this.props.name}
             className={`select-input--label ${this.props.labelClassName}`}>
             {this.props.label}
           </label>
         : null }
-        <ReactSelect
+        <Cmp
           ref='selectInput'
           className={`select-input ${this.props.className}`}
           joinValues={this.props.joinValues}
@@ -45,8 +46,17 @@ export default class SelectInput extends React.Component {
           simpleValue={this.props.simpleValue}
           value={this.state.value}
           valueKey={this.props.valueKey}
+
+          // creatable props
+          isOptionUnique={this.props.isOptionUnique}
+          isValidNewOption={this.props.isValidNewOption}
+          newOptionCreator={this.props.newOptionCreator}
+          onNewOptionClick={this.props.onNewOptionClick}
+          shouldKeyDownEventCreateNewOption={this.props.shouldKeyDownEventCreateNewOption}
+          promptTextCreator={this.props.promptTextCreator}
+
         />
-        <Hint text={this.props.hint} />
+        
         <FieldErrors 
           name={this.props.name}
           errors={errors} />
