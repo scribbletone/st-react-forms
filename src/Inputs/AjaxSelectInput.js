@@ -41,6 +41,7 @@ export default class AjaxSelectInput extends React.Component {
   render() {
     let errors = this.props.errors[this.props.name];
     let errorClassName = (errors ? ' field_with_errors ' : '');
+    let Cmp = (this.props.creatable ? ReactSelect.AsyncCreatable : ReactSelect.Async);
     return (
       <div className={`form-input select-input--wrapper input-${this.props.name} ${errorClassName} ${this.props.wrapperClassName}`}>
         {this.props.label ? 
@@ -50,7 +51,7 @@ export default class AjaxSelectInput extends React.Component {
             {this.props.label}
           </label>
         : null }
-        <ReactSelect.Async
+        <Cmp
           ref='selectInput'
           autoload={this.props.autoload || this.defaultOptions().length > 0}
           className={`select-input ${this.props.className}`}
@@ -66,6 +67,14 @@ export default class AjaxSelectInput extends React.Component {
           value={this.state.value}
           valueKey={this.props.valueKey}
           valueRenderer={this.props.renderValue}
+
+          // creatable props
+          isOptionUnique={this.props.isOptionUnique}
+          isValidNewOption={this.props.isValidNewOption}
+          newOptionCreator={this.props.newOptionCreator}
+          onNewOptionClick={this.props.onNewOptionClick}
+          shouldKeyDownEventCreateNewOption={this.props.shouldKeyDownEventCreateNewOption}
+          promptTextCreator={this.props.promptTextCreator}
         />
         <Hint text={this.props.hint} />
         <FieldErrors 
