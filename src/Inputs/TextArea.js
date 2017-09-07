@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
+import Label from '../Misc/Label';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class TextArea extends React.Component {
@@ -43,13 +44,10 @@ export default class TextArea extends React.Component {
     
     return (
       <div className={`form-input text-area--wrapper input-${this.props.name} ${errorClassName}`}>
-        {this.props.label ? 
-          <label 
-            htmlFor={this.props.name}
-            className={`form-label text-area--label ${this.props.labelClassName}`}>
-            {this.props.label}
-          </label>
-        : null }
+        <Label
+          field={this.props.name}
+          text={this.props.label}
+          className={`form-label text-area--label ${this.props.labelClassName}`} />
         <textarea 
           autoFocus={this.props.autoFocus}
           name={this.props.name}

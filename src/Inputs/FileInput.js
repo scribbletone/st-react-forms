@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
+import Label from '../Misc/Label';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class FileInput extends React.Component {
@@ -29,14 +30,10 @@ export default class FileInput extends React.Component {
     let errorClassName = (errors ? ' field_with_errors ' : '');
     return (
       <div className={`form-input file-input--wrapper input-${this.props.name} ${errorClassName}`}>
-
-        {this.props.label ? 
-          <label 
-            htmlFor={this.props.name}
-            className={`form-label file-input--label ${this.props.labelClassName}`}>
-            {this.props.label}
-          </label>
-        : null }
+        <Label
+          field={this.props.name}
+          text={this.props.label}
+          className={`form-label file-input--label ${this.props.labelClassName}`}/>
         <input 
           type="file" 
           name={this.props.name}

@@ -10,6 +10,7 @@ import TextArea from './Inputs/TextArea';
 import TextInput from './Inputs/TextInput';
 
 import Button from './Misc/Button';
+import Label from './Misc/Label';
 import Hint from './Misc/Hint';
 
 import FieldErrors from './Errors/FieldErrors';
@@ -25,6 +26,7 @@ export {
   FileInput,
   HiddenInput,
   Hint,
+  Label,
   PasswordInput,
   RadioOptions,
   SelectInput,

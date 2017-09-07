@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
+import Label from '../Misc/Label';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class RadioOptions extends React.Component {
@@ -51,13 +52,10 @@ export default class RadioOptions extends React.Component {
     
     return (
       <div className={`form-input radio-input--wrapper input-${this.props.name} ${errorClassName}`}>
-        {this.props.label ? 
-          <label 
-            htmlFor={this.props.name}
-            className={`form-label radio-input--label ${this.props.labelClassName}`}>
-            {this.props.label}
-          </label>
-        : null }
+        <Label
+          field={this.props.name}
+          text={this.props.label}
+          className={`form-label radio-input--label ${this.props.labelClassName}`} />
         {this.renderOptions()}
         <Hint text={this.props.hint} />
         <FieldErrors 
