@@ -4,6 +4,7 @@ import Hint from '../Misc/Hint';
 import _ from 'lodash';
 import Numeral from 'numeral';
 import Label from '../Misc/Label';
+import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 
 Numeral.nullFormat('');
@@ -101,6 +102,9 @@ export default class TextInput extends React.Component {
           field={this.props.name}
           text={this.props.label}
           className={`form-label text-input--label ${this.props.labelClassName}`} />
+        <InputDescription 
+          className={this.props.inputDescriptionClassName}
+          text={this.props.inputDescription} />
         <input 
           autoFocus={this.props.autoFocus}
           type={this.props.password ? 'password' : 'text'}
@@ -129,6 +133,8 @@ TextInput.propTypes = {
   ]),
   errors: PropTypes.object,
   format: PropTypes.string,
+  inputDescription: PropTypes.string,
+  inputDescriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   maxLength: PropTypes.number,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
+import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 import ReactSelect from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -30,6 +31,9 @@ export default class SelectInput extends React.Component {
           field={this.props.name}
           text={this.props.label}
           className={`form-label select-input--label ${this.props.labelClassName}`} />
+        <InputDescription 
+          className={this.props.inputDescriptionClassName}
+          text={this.props.inputDescription} />
         <Cmp
           ref='selectInput'
           className={`select-input ${this.props.className}`}
@@ -67,6 +71,8 @@ SelectInput.propTypes = {
   errors: PropTypes.object,
   className: PropTypes.string,
   joinValues: PropTypes.bool,
+  inputDescription: PropTypes.string,
+  inputDescriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelKey: PropTypes.string,
   multi: PropTypes.bool,

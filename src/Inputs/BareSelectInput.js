@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
+import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 
 export default class BareSelectInput extends React.Component {
@@ -33,6 +34,9 @@ export default class BareSelectInput extends React.Component {
           field={this.props.name}
           text={this.props.label}
           className={`form-label select-input--label ${this.props.labelClassName}`} />
+        <InputDescription 
+          className={this.props.inputDescriptionClassName}
+          text={this.props.inputDescription} />
         <select 
           name={this.props.name}
           className={`select-input ${this.props.className}`}
@@ -57,6 +61,8 @@ BareSelectInput.propTypes = {
     PropTypes.number
   ]),
   errors: PropTypes.object,
+  inputDescription: PropTypes.string,
+  inputDescriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,

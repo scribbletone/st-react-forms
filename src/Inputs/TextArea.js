@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import FieldErrors from '../Errors/FieldErrors';
+import InputDescription from '../Misc/InputDescription';
 
 export default class TextArea extends React.Component {
   constructor(props) {
@@ -48,6 +49,9 @@ export default class TextArea extends React.Component {
           field={this.props.name}
           text={this.props.label}
           className={`form-label text-area--label ${this.props.labelClassName}`} />
+        <InputDescription 
+          className={this.props.inputDescriptionClassName}
+          text={this.props.inputDescription} />
         <textarea 
           autoFocus={this.props.autoFocus}
           name={this.props.name}
@@ -74,6 +78,8 @@ TextArea.propTypes = {
       PropTypes.number
   ]),
   errors: PropTypes.object,
+  inputDescription: PropTypes.string,
+  inputDescriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,
