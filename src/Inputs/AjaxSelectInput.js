@@ -51,8 +51,8 @@ export default class AjaxSelectInput extends React.Component {
           text={this.props.label}
           className={`form-label select-input--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <Cmp
           ref='selectInput'
           autoload={this.props.autoload || this.defaultOptions().length > 0}
@@ -92,11 +92,11 @@ AjaxSelectInput.propTypes = {
   autoload: PropTypes.bool,
   className: PropTypes.string,
   errors: PropTypes.object,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   joinValues: PropTypes.bool,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelKey: PropTypes.string,
   multi: PropTypes.bool,

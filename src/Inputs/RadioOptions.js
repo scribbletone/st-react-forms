@@ -58,8 +58,8 @@ export default class RadioOptions extends React.Component {
           text={this.props.label}
           className={`form-label radio-input--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         {this.renderOptions()}
         <Hint text={this.props.hint} />
         <FieldErrors 
@@ -78,8 +78,8 @@ RadioOptions.propTypes = {
       PropTypes.bool
   ]),
   errors: PropTypes.object,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,

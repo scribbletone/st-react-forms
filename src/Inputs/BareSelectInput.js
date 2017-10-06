@@ -35,8 +35,8 @@ export default class BareSelectInput extends React.Component {
           text={this.props.label}
           className={`form-label select-input--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <select 
           name={this.props.name}
           className={`select-input ${this.props.className}`}
@@ -61,8 +61,8 @@ BareSelectInput.propTypes = {
     PropTypes.number
   ]),
   errors: PropTypes.object,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,

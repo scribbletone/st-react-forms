@@ -32,8 +32,8 @@ export default class SelectInput extends React.Component {
           text={this.props.label}
           className={`form-label select-input--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <Cmp
           ref='selectInput'
           className={`select-input ${this.props.className}`}
@@ -71,8 +71,8 @@ SelectInput.propTypes = {
   errors: PropTypes.object,
   className: PropTypes.string,
   joinValues: PropTypes.bool,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelKey: PropTypes.string,
   multi: PropTypes.bool,

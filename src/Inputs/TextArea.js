@@ -50,8 +50,8 @@ export default class TextArea extends React.Component {
           text={this.props.label}
           className={`form-label text-area--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <textarea 
           autoFocus={this.props.autoFocus}
           name={this.props.name}
@@ -78,8 +78,8 @@ TextArea.propTypes = {
       PropTypes.number
   ]),
   errors: PropTypes.object,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,

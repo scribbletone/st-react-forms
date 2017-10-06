@@ -103,8 +103,8 @@ export default class TextInput extends React.Component {
           text={this.props.label}
           className={`form-label text-input--label ${this.props.labelClassName}`} />
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <input 
           autoFocus={this.props.autoFocus}
           type={this.props.password ? 'password' : 'text'}
@@ -133,8 +133,8 @@ TextInput.propTypes = {
   ]),
   errors: PropTypes.object,
   format: PropTypes.string,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   maxLength: PropTypes.number,

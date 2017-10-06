@@ -36,8 +36,8 @@ export default class BooleanInput extends React.Component {
           </div>
         : null }
         <InputDescription 
-          className={this.props.inputDescriptionClassName}
-          text={this.props.inputDescription} />
+          className={this.props.descriptionClassName}
+          text={this.props.description} />
         <label 
           htmlFor={this.props.name}>
           <input 
@@ -70,12 +70,12 @@ BooleanInput.propTypes = {
       PropTypes.bool
   ]),
   errors: PropTypes.object,
-  inlineinputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  inlinedescription: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   inlineLabelClassName: PropTypes.string,
-  inputDescription: PropTypes.string,
-  inputDescriptionClassName: PropTypes.string,
+  description: PropTypes.string,
+  descriptionClassName: PropTypes.string,
   label: PropTypes.string,
   labelClassName: PropTypes.string,
   name: PropTypes.string,
