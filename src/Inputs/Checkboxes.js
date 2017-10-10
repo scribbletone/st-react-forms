@@ -39,10 +39,11 @@ export default class Checkboxes extends React.Component {
   }
   renderOptions(){
     return this.props.options.map((option)=>{
+      const checkedClass = this.optionChecked(option.value) ? 'checkbox-input--checked' : '';
       return (
         <label 
           key={`option-${option.value}`}
-          className='checkbox-input'>
+          className={`checkbox-input ${checkedClass}`}>
           <input 
             name={this.props.name}
             type="checkbox" 
