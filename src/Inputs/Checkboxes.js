@@ -9,7 +9,7 @@ export default class Checkboxes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.defaultValue,
+      value: this.props.defaultValue || '',
     }
   }
   componentWillReceiveProps(nextProps) {
