@@ -32,6 +32,7 @@ export default class Checkboxes extends React.Component {
     } else {
       values.push(optionValue);
     }
+    values = values.filter((v)=>{return v != ''})
     this.setValue(values.join(','));
   }
   optionChecked(value){
