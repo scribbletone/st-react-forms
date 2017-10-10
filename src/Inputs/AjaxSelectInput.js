@@ -109,7 +109,8 @@ AjaxSelectInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.number,
-    PropTypes.string
+    PropTypes.string,
+    PropTypes.object
   ]),
   valueKey: PropTypes.string
 };

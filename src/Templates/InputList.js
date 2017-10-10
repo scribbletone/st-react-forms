@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AjaxSelectInput from '../Inputs/AjaxSelectInput';
 import BooleanInput from '../Inputs/BooleanInput';
+import Checkboxes from '../Inputs/Checkboxes';
 import FileInput from '../Inputs/FileInput';
 import HiddenInput from '../Inputs/HiddenInput';
 import PasswordInput from '../Inputs/PasswordInput';
@@ -21,6 +22,8 @@ export default class InputList extends React.Component {
         return AjaxSelectInput;
       case 'BooleanInput':
         return BooleanInput;
+      case 'Checkboxes':
+        return Checkboxes;
       case 'FileInput':
         return FileInput;
       case 'HiddenInput':
