@@ -1,6 +1,7 @@
 import AjaxSelectInput from './Inputs/AjaxSelectInput';
 import BareSelectInput from './Inputs/BareSelectInput';
 import BooleanInput from './Inputs/BooleanInput';
+import Checkboxes from './Inputs/Checkboxes';
 import FileInput from './Inputs/FileInput';
 import HiddenInput from './Inputs/HiddenInput';
 import PasswordInput from './Inputs/PasswordInput';
@@ -24,6 +25,7 @@ export {
   BareSelectInput,
   BooleanInput,
   Button,
+  Checkboxes,
   FileInput,
   HiddenInput,
   Hint,

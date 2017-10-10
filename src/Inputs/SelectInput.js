@@ -68,6 +68,8 @@ export default class SelectInput extends React.Component {
 }
 SelectInput.propTypes = {
   options: PropTypes.array.isRequired,
+  addLabelText: PropTypes.string,
+  allowCreate: PropTypes.bool,
   errors: PropTypes.object,
   className: PropTypes.string,
   joinValues: PropTypes.bool,
