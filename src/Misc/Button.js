@@ -10,7 +10,7 @@ export default class Button extends React.Component {
   }
   render() {
     const disabledClass = (this.props.disabled ? ' disabled' : '');
-    const hrefProp = props.href ? props.href : {};
+    const hrefProp = props.href ? {href: props.href} : {};
     return (
       <a
         disabled={this.props.disabled}
@@ -26,5 +26,5 @@ Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   submitting: PropTypes.bool,
-  href: PropTypes.object
+  href: PropTypes.string
 };
