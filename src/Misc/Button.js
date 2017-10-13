@@ -10,7 +10,7 @@ export default class Button extends React.Component {
   }
   render() {
     const disabledClass = (this.props.disabled ? ' disabled' : '');
-    const hrefProp = props.href ? {href: props.href} : {};
+    const hrefProp = this.props.href ? {href: this.props.href} : '';
     return (
       <a
         disabled={this.props.disabled}
