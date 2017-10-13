@@ -10,11 +10,13 @@ export default class Button extends React.Component {
   }
   render() {
     const disabledClass = (this.props.disabled ? ' disabled' : '');
+    const hrefProp = props.href ? props.href : {};
     return (
       <a
         disabled={this.props.disabled}
         className={`btn ${this.props.className} ${disabledClass}`}
-        onClick={()=>{this.handleClick()}}>
+        onClick={()=>{this.handleClick()}} 
+        {...hrefProp}>
         {this.props.children}
       </a>
     );
@@ -23,5 +25,6 @@ export default class Button extends React.Component {
 Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  submitting: PropTypes.bool
+  submitting: PropTypes.bool,
+  href: PropTypes.object
 };
