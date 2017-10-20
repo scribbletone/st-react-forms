@@ -40,11 +40,12 @@ export default class BooleanInput extends React.Component {
           className={this.props.descriptionClassName}
           text={this.props.description} />
         <label 
-          htmlFor={this.props.name}>
+          htmlFor={this.props.name}
+          className='boolean-input' >
           <input 
             type="checkbox" 
             name={this.props.name} 
-            className='boolean-input'
+            className='boolean-input--input'
             value={this.props.defaultValue}
             checked={this.state.value}
             onChange={(e)=>{this.handleChange(e)}} 
