@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
+import InputDescription from '../Misc/InputDescription';
 
 export default class BooleanInput extends React.Component {
   constructor(props) {
