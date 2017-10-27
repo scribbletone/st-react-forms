@@ -40,7 +40,6 @@ export default class BooleanInput extends React.Component {
           className={this.props.descriptionClassName}
           text={this.props.description} />
         <label 
-          htmlFor={this.props.name}
           className='boolean-input' >
           <input 
             type="checkbox" 
