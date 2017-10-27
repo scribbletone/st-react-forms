@@ -30,3 +30,6 @@ Button.propTypes = {
   submitting: PropTypes.bool,
   href: PropTypes.string
 };
+Button.defaultProps = {
+  className: ''
+};
