@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 export default class FieldErrors extends React.Component {
   static propTypes = {
     name: PropTypes.string,
-    errors: PropTypes.string
+    errors: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
+    ])
   };
   constructor(props) {
     super(props);
