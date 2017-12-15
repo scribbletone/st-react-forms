@@ -73,7 +73,9 @@ export default class Checkboxes extends React.Component {
         <InputDescription 
           className={this.props.descriptionClassName}
           text={this.props.description} />
-        {this.renderOptions()}
+        <div className='checkbox-input--checkboxes'>
+          {this.renderOptions()}
+        </div>
         <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
