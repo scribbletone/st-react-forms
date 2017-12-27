@@ -14,8 +14,11 @@ export default class Button extends React.Component {
     const hrefProp = this.props.href ? {href: this.props.href} : '';
     const targetProp = this.props.target ? {target: this.props.target} : '';
     const submittingClass = (this.props.submitting ? 'btn--submitting' : '');
+
+    let Cmp = (this.props.href ? 'a' : 'button');
+
     return (
-      <button
+      <Cmp
         type={this.props.type}
         disabled={isDisabled}
         className={`btn ${this.props.className} ${disabledClass} ${submittingClass}`}
@@ -23,7 +26,7 @@ export default class Button extends React.Component {
         {...targetProp}
         {...hrefProp}>
         {this.props.children}
-      </button>
+      </Cmp>
     );
   }
 }
