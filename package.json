@@ -1,6 +1,6 @@
 {
   "name": "st-react-forms",
-  "version": "0.2.21",
+  "version": "0.2.22",
   "description": "Reusable form elements and validation system for react",
   "main": "src/index.js",
   "scripts": {
