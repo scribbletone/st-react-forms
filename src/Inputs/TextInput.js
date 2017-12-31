@@ -6,6 +6,7 @@ import Numeral from 'numeral';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
+import Slugify from 'slugify';
 
 Numeral.nullFormat('');
 Numeral.register('locale', 'en-custom', {
@@ -76,6 +77,8 @@ export default class TextInput extends React.Component {
         }
       case 'unformattedNumber':
         return Numeral(newVal).format('0');
+      case 'parameterize':
+        return Slugify(newVal, {remove: /[$*_+~#.`()#%^=\[\]{};,\\\/\?'"‘’“”!\-:@]/g});
       case 'none':
       default:
         return value;
