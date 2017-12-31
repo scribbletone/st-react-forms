@@ -43,24 +43,26 @@ export default class InputList extends React.Component {
   }
   renderFields() {
     return this.props.fields.map((field)=>{
-      let Cmp = this.findComponent(field);
-      return (
-        <Cmp
-          errors={this.props.errors}
-          key={field.name}
-          name={field.name}
-          label={field.label}
-          hint={field.hint}
-          inlineLabel={field.inlineLabel}
-          description={field.description}
-          onChange={(v)=>{this.props.onInputChange(field.name, v, field.dataType)}}
-          onItemSelect={(v)=>{this.props.onItemSelect(field.name, v)}}
-          onLoadOptions={(v,c)=>{this.props.onLoadOptions(field.name, v,c)}}
-          defaultValue={this.props.data[field.name]}
-          value={this.props.data[field.name]}
-          {...field.extraProps}
-        />
-      );
+      if (field) {
+        let Cmp = this.findComponent(field);
+        return (
+          <Cmp
+            errors={this.props.errors}
+            key={field.name}
+            name={field.name}
+            label={field.label}
+            hint={field.hint}
+            inlineLabel={field.inlineLabel}
+            description={field.description}
+            onChange={(v)=>{this.props.onInputChange(field.name, v, field.dataType)}}
+            onItemSelect={(v)=>{this.props.onItemSelect(field.name, v)}}
+            onLoadOptions={(v,c)=>{this.props.onLoadOptions(field.name, v,c)}}
+            defaultValue={this.props.data[field.name]}
+            value={this.props.data[field.name]}
+            {...field.extraProps}
+          />
+        );
+      }
     })
   }
   render() {
