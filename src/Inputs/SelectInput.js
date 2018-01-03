@@ -48,6 +48,7 @@ export default class SelectInput extends React.Component {
           simpleValue={this.props.simpleValue}
           value={this.state.value}
           valueKey={this.props.valueKey}
+          clearable={this.props.clearable}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}
@@ -72,6 +73,7 @@ SelectInput.propTypes = {
   allowCreate: PropTypes.bool,
   errors: PropTypes.object,
   className: PropTypes.string,
+  clearable: PropTypes.bool,
   joinValues: PropTypes.bool,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,
