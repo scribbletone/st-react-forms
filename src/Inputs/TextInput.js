@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
-import _ from 'lodash';
 import Numeral from 'numeral';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
@@ -61,8 +60,13 @@ export default class TextInput extends React.Component {
       return value;
     }
   }
+  uniqArray(inArr){
+    return inArr.filter((elem, pos, newArr) => {
+      return newArr.indexOf(elem) == pos;
+    });
+  }
   allZeros(value){
-    let values = _.uniq(value.toString().split('').map((v)=>{return v}));
+    const values = this.uniqArray(value.toString().split('').map((v)=>{return v}));
     return (values.length == 1) && (values[0] == "0");
   }
   cleanValue(value){

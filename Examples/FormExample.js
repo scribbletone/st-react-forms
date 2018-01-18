@@ -16,12 +16,19 @@ export default class FormExample extends React.Component {
       [field]: value 
     });
   }
+  isEmpty(obj) {
+    for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+        return false;
+    }
+    return true;
+  }
   submit(){
     let errors = Validations.run(this.state, VALIDATION_FIELDS);
     this.setState({
       errors: errors
     });
-    if (_.isEmpty(errors)){
+    if (this.isEmpty(errors)){
       console.log('submitted')
     } else {
       console.log(errors)
