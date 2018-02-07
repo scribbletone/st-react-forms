@@ -19,5 +19,8 @@ export default class Hint extends React.Component {
 }
 
 Hint.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
 }

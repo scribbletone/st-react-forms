@@ -18,7 +18,10 @@ export default class InputDescription extends React.Component {
 }
 
 InputDescription.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   field: PropTypes.string,
   className: PropTypes.string,
   renderIfEmpty: PropTypes.bool
