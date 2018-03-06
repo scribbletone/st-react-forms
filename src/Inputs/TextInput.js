@@ -113,6 +113,7 @@ export default class TextInput extends React.Component {
           className={this.props.descriptionClassName}
           text={this.props.description} />
         <input 
+          autoComplete={this.props.autoFill}
           autoFocus={this.props.autoFocus}
           type={this.props.password ? 'password' : 'text'}
           name={this.props.name}
@@ -153,11 +154,13 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   wrapperClassName: PropTypes.string,
   newValue: PropTypes.string,
+  autoFill: PropTypes.string
 };
 TextInput.defaultProps = {
   autoFocus: false,
   errors: {},
   format: 'none',
   defaultValue: '',
-  newValue: ''
+  newValue: '',
+  autoFill: 'new-password'
 }
