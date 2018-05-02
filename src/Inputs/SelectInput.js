@@ -60,7 +60,7 @@ export default class SelectInput extends React.Component {
           promptTextCreator={this.props.promptTextCreator}
 
         />
-        
+        <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
           errors={errors} />
@@ -78,6 +78,7 @@ SelectInput.propTypes = {
   joinValues: PropTypes.bool,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,
+  hint: PropTypes.string,
   label: PropTypes.string,
   labelKey: PropTypes.string,
   multi: PropTypes.bool,
