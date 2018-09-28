@@ -162,5 +162,5 @@ TextInput.defaultProps = {
   format: 'none',
   defaultValue: '',
   newValue: '',
-  autoFill: 'new-password'
+  autoFill: ''
 }
