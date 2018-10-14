@@ -82,7 +82,7 @@ export default class TextInput extends React.Component {
       case 'unformattedNumber':
         return Numeral(newVal).format('0');
       case 'parameterize':
-        return Slugify(newVal, {remove: /[$*_+~#.`()#%^=\[\]{};,\\\/\?'"‘’“”!\-:@]/g});
+        return Slugify(newVal, {remove: /[$*+~#.`()#%^=\[\]{};,\\\/\?'"‘’“”!:@]/g});
       case 'none':
       default:
         return value;
