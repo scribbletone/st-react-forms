@@ -69,10 +69,9 @@ export default class AjaxSelectInput extends React.Component {
           value={this.state.value}
           valueKey={this.props.valueKey}
           valueRenderer={this.props.renderValue}
-
-          defaultMenuIsOpen={this.props.defaultMenuIsOpen}
-          onMenuOpen={this.props.onMenuOpen}
-          onMenuClose={this.props.onMenuClose}
+          valueComponent={this.props.valueComponent}
+          optionRenderer={this.props.optionRenderer}
+          optionComponent={this.props.optionComponent}
           
           openOnFocus={this.props.openOnFocus}
           openOnClick={this.props.openOnClick}
