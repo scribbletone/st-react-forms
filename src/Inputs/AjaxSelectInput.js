@@ -66,9 +66,12 @@ export default class AjaxSelectInput extends React.Component {
           onInputChange={(v)=>{this.handleInputChange(v)}}
           placeholder={this.props.placeholder}
           simpleValue={this.props.simpleValue}
+          defaultMenuIsOpen={this.props.defaultMenuIsOpen}
           value={this.state.value}
           valueKey={this.props.valueKey}
           valueRenderer={this.props.renderValue}
+          onMenuOpen={this.props.onMenuOpen}
+          onMenuClose={this.props.onMenuClose}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}
