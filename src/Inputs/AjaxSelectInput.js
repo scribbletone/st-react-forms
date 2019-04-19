@@ -16,7 +16,13 @@ export default class AjaxSelectInput extends React.Component {
     this.requestTimer;
   }
   handleItemSelect(value) {
-    this.setState({ value });
+    if (this.props.onSelectResetsInput) {
+      this.setState({
+        value: null
+      });
+    } else {
+      this.setState({ value });
+    }
     this.props.onItemSelect && this.props.onItemSelect(value)
   }
   handleInputChange(value) {
@@ -76,6 +82,16 @@ export default class AjaxSelectInput extends React.Component {
           openOnFocus={this.props.openOnFocus}
           openOnClick={this.props.openOnClick}
           autosize={this.props.autosize}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+
+          onSelectResetsInput={this.props.onSelectResetsInput}
+          filterOptions={this.props.filterOptions}
+          filterOption={this.props.filterOption}
+          cache={this.props.cache}
+          autoBlur={this.props.autoBlur}
+          noResultsText={this.props.noResultsText}
+          searchPromptText={this.props.searchPromptText}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}

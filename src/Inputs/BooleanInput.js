@@ -82,7 +82,11 @@ BooleanInput.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   wrapperClassName: PropTypes.string,
-  newValue: PropTypes.string
+  newValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.bool
+  ])
 };
 BooleanInput.defaultProps = {
   errors: {},
