@@ -13,14 +13,16 @@ export default class BooleanInput extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.newValue != nextProps.newValue){
-      this.setValue(nextProps.newValue);
+      this.setValue(nextProps.newValue, true);
     }
   }
-  setValue(value){
+  setValue(value, ignoreCallback){
     this.setState({
       value: value
     });
-    this.props.onChange && this.props.onChange(value);
+    if (!ignoreCallback) {
+      this.props.onChange && this.props.onChange(value);  
+    }
   }
   handleChange(e){
     this.setValue(e.target.checked);
