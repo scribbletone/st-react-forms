@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import {Button, Select, TextInput, Validations} from 'st-react-forms';
 
 export default class FormExample extends React.Component {

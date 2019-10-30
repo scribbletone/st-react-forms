@@ -1,6 +1,6 @@
 {
   "name": "st-react-forms",
-  "version": "0.3.27",
+  "version": "0.3.28",
   "description": "Reusable form elements and validation system for react",
   "main": "src/index.js",
   "scripts": {
@@ -9,7 +9,6 @@
   "author": "Scribble Tone",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.4",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-dom": "^16.2.0",
