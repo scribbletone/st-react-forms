@@ -44,6 +44,7 @@ export default class SelectInput extends React.Component {
           onChange={(v)=>{this.handleItemSelect(v)}}
           onInputChange={(v)=>{this.handleInputChange(v)}}
           options={this.props.options}
+          optionRenderer={this.props.optionRenderer}
           valueRenderer={this.props.renderValue}
           simpleValue={this.props.simpleValue}
           value={this.state.value}
@@ -85,6 +86,7 @@ SelectInput.propTypes = {
   name: PropTypes.string,
   onInputChange: PropTypes.func,
   onItemSelect: PropTypes.func,
+  optionRenderer: PropTypes.func,
   simpleValue: PropTypes.bool,
   renderValue: PropTypes.func,
   value: PropTypes.oneOfType([
@@ -93,6 +95,7 @@ SelectInput.propTypes = {
     PropTypes.string
   ]),
   valueKey: PropTypes.string,
+  valueRenderer: PropTypes.func,
   autoFill: PropTypes.string
 };
 SelectInput.defaultProps = {
