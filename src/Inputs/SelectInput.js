@@ -51,8 +51,7 @@ export default class SelectInput extends React.Component {
           value={this.state.value}
           valueKey={this.props.valueKey}
           clearable={this.props.clearable}
-          inputProps={{autoComplete: this.props.autoFill}}
-          inputProps={{name: this.props.name, autoComplete: this.props.autoFill}}
+          inputProps={{name: 'search', autoComplete: this.props.autoFill}}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}
