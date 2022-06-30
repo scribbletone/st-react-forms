@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { uid } from 'uid';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
@@ -51,6 +52,7 @@ export default class SelectInput extends React.Component {
           valueKey={this.props.valueKey}
           clearable={this.props.clearable}
           inputProps={{autoComplete: this.props.autoFill}}
+          inputProps={{name: this.props.name, autoComplete: this.props.autoFill ? this.props.autoFill : `off-${uid(8)}`}}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}
