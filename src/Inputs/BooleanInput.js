@@ -31,7 +31,7 @@ export default class BooleanInput extends React.Component {
     let errors = this.props.errors[this.props.name];
     let errorClassName = (errors ? ' field_with_errors ' : '');
 
-    const safeVal = (this.state.value === null) ? false : this.state.value;
+    const safeVal = (this.state.value === null) ? '' : this.state.value;
     return (
       <div className={`form-input boolean-input--wrapper input-${this.props.name} ${errorClassName}`}>
 
@@ -49,7 +49,7 @@ export default class BooleanInput extends React.Component {
             type="checkbox" 
             name={this.props.name} 
             className='boolean-input--input'
-            value={this.props.defaultValue}
+            value={safeVal}
             checked={safeVal}
             onChange={(e)=>{this.handleChange(e)}} 
           />
