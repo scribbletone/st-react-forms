@@ -5,77 +5,60 @@ import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 
-export default class Checkboxes extends React.Component {
+export default class BooleanInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.defaultValue || '',
+      value: this.props.defaultValue,
     }
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.newValue != nextProps.newValue){
-      this.setValue(nextProps.newValue);
+      this.setValue(nextProps.newValue, true);
     }
   }
-  setValue(value){
+  setValue(value, ignoreCallback){
     this.setState({
       value: value
     });
-    this.props.onChange && this.props.onChange(value);
-  }
-  handleChange(r, optionValue){
-    let values = this.state.value.split(',');
-    if (this.optionChecked(optionValue)) {
-      values = values.filter((v)=>{
-        return v != optionValue;
-      })
-    } else {
-      values.push(optionValue);
+    if (!ignoreCallback) {
+      this.props.onChange && this.props.onChange(value);  
     }
-    values = values.filter((v)=>{return v != ''})
-    this.setValue(values.join(','));
   }
-  optionChecked(value){
-    return this.state.value.split(',').indexOf(value) >= 0;
-  }
-  renderOptions(){
-    return this.props.options.map((option)=>{
-      const checkedClass = this.optionChecked(option.value) ? 'checkbox-input--checked' : '';
-      return (
-        <label 
-          key={`option-${option.value}`}
-          className={`checkbox-input ${checkedClass}`}>
-          <input 
-            name={this.props.name}
-            type="checkbox" 
-            value={option.value} 
-            className='checkbox-input--option'
-            checked={this.optionChecked(option.value)}
-            onChange={(r)=>{this.handleChange(r, option.value)}}
-          />
-          <span className='checkbox-input--option-label'>
-            {option.label}
-          </span>
-        </label>
-      )
-    });
+  handleChange(e){
+    this.setValue(e.target.checked);
   }
   render() {
     let errors = this.props.errors[this.props.name];
     let errorClassName = (errors ? ' field_with_errors ' : '');
-    
+
+    const safeVal = (this.state.value === null) ? '' : this.state.value;
     return (
-      <div className={`form-input checkbox-input--wrapper input-${this.props.name} ${errorClassName}`}>
-        <Label
-          field={this.props.name}
-          text={this.props.label}
-          className={`form-label checkbox-input--label ${this.props.labelClassName}`} />
+      <div className={`form-input boolean-input--wrapper input-${this.props.name} ${errorClassName}`}>
+
+        {this.props.label ? 
+          <div className={`form-label boolean-input--label ${this.props.labelClassName}`}>
+            {this.props.label}
+          </div>
+        : null }
         <InputDescription 
           className={this.props.descriptionClassName}
           text={this.props.description} />
-        <div className='checkbox-input--checkboxes'>
-          {this.renderOptions()}
-        </div>
+        <label 
+          className='boolean-input' >
+          <input 
+            type="checkbox" 
+            name={this.props.name} 
+            className='boolean-input--input'
+            value={safeVal}
+            checked={safeVal}
+            onChange={(e)=>{this.handleChange(e)}} 
+          />
+          <span 
+            className="boolean-input--inline-label">
+              {this.props.inlineLabel}
+          </span>
+        </label>
         <Hint text={this.props.hint} />
         <FieldErrors 
           name={this.props.name}
@@ -85,10 +68,18 @@ export default class Checkboxes extends React.Component {
   }
 }
 
-Checkboxes.propTypes = {
+BooleanInput.propTypes = {
   className: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.bool
+  ]),
   errors: PropTypes.object,
+  inlinedescription: PropTypes.string,
+  descriptionClassName: PropTypes.string,
+  label: PropTypes.string,
+  inlineLabelClassName: PropTypes.string,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,
   label: PropTypes.string,
@@ -96,13 +87,15 @@ Checkboxes.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   wrapperClassName: PropTypes.string,
-  newValue: PropTypes.string,
-  options: PropTypes.array
+  newValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.bool
+  ])
 };
-Checkboxes.defaultProps = {
+BooleanInput.defaultProps = {
   errors: {},
   format: 'none',
   defaultValue: '',
-  newValue: null,
-  options: []
+  newValue: null
 }
