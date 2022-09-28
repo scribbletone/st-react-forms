@@ -14,14 +14,16 @@ export default class Checkboxes extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.newValue != nextProps.newValue){
-      this.setValue(nextProps.newValue);
+      this.setValue(nextProps.newValue, this.props.preventUpdateOnNewValue);
     }
   }
-  setValue(value){
+  setValue(value, preventUpdateOnNewValue){
     this.setState({
       value: value
     });
-    this.props.onChange && this.props.onChange(value);
+    if (!preventUpdateOnNewValue) {
+      this.props.onChange && this.props.onChange(value);
+    }
   }
   handleChange(r, optionValue){
     let values = this.state.value.split(',');
@@ -97,7 +99,8 @@ Checkboxes.propTypes = {
   onChange: PropTypes.func,
   wrapperClassName: PropTypes.string,
   newValue: PropTypes.string,
-  options: PropTypes.array
+  options: PropTypes.array,
+  preventUpdateOnNewValue: PropTypes.bool
 };
 Checkboxes.defaultProps = {
   errors: {},
