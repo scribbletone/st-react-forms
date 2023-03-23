@@ -94,7 +94,7 @@ export default class AjaxSelectInput extends React.Component {
           searchPromptText={this.props.searchPromptText}
 
           autoComplete={this.props.autoComplete}
-          inputProps={this.props.inputProps}
+          inputProps={{name: 'search', autoComplete: this.props.autoFill}}
 
           // creatable props
           isOptionUnique={this.props.isOptionUnique}
