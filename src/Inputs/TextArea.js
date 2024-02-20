@@ -31,9 +31,10 @@ export default class TextArea extends React.Component {
     this.props.onChange && this.props.onChange(value);
   }
   setFilledTextareaHeight() {
-    const borderTop = parseInt(DomStyle.getProperty(this.textareaRef, 'border-top-width'));
-    const borderBottom = parseInt(DomStyle.getProperty(this.textareaRef, 'border-bottom-width'));
-    const scrollHeight = this.textareaRef.scrollHeight;
+    const el = this.textareaRef.current;
+    const borderTop = parseInt(DomStyle.getProperty(el, 'border-top-width'));
+    const borderBottom = parseInt(DomStyle.getProperty(el, 'border-bottom-width'));
+    const scrollHeight = el.scrollHeight;
     this.setState({
       inputHeight: scrollHeight  + borderTop + borderBottom
     });
