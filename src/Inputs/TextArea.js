@@ -14,6 +14,7 @@ export default class TextArea extends React.Component {
       value: this.props.defaultValue,
       focused: false
     }
+    this.textareaRef = React.createRef();
   }
   componentDidMount() {
     this.setFilledTextareaHeight();
@@ -30,9 +31,9 @@ export default class TextArea extends React.Component {
     this.props.onChange && this.props.onChange(value);
   }
   setFilledTextareaHeight() {
-    const borderTop = parseInt(DomStyle.getProperty(this.refs.textarea, 'border-top-width'));
-    const borderBottom = parseInt(DomStyle.getProperty(this.refs.textarea, 'border-bottom-width'));
-    const scrollHeight = this.refs.textarea.scrollHeight;
+    const borderTop = parseInt(DomStyle.getProperty(this.textareaRef, 'border-top-width'));
+    const borderBottom = parseInt(DomStyle.getProperty(this.textareaRef, 'border-bottom-width'));
+    const scrollHeight = this.textareaRef.scrollHeight;
     this.setState({
       inputHeight: scrollHeight  + borderTop + borderBottom
     });
@@ -61,7 +62,7 @@ export default class TextArea extends React.Component {
       : {});
     return (
       <textarea 
-        ref='textarea'
+        ref={this.textareaRef}
         autoFocus={this.props.autoFocus}
         name={this.props.name}
         className={`text-area ${this.props.className}`}

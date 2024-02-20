@@ -14,6 +14,7 @@ export default class SelectInput extends React.Component {
     this.state = {
       value: this.props.value
     }
+    this.selectInputRef = React.createRef();
   }
   handleItemSelect(value) {
     this.setState({ value });
@@ -36,7 +37,7 @@ export default class SelectInput extends React.Component {
           className={this.props.descriptionClassName}
           text={this.props.description} />
         <Cmp
-          ref='selectInput'
+          ref={this.selectInputRef}
           className={`select-input ${this.props.className}`}
           joinValues={this.props.joinValues}
           labelKey={this.props.labelKey}

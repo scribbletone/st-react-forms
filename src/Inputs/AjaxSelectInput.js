@@ -14,6 +14,8 @@ export default class AjaxSelectInput extends React.Component {
       value: this.props.value
     }
     this.requestTimer;
+
+    this.selectInputRef = React.createRef();
   }
   handleItemSelect(value) {
     if (this.props.onSelectResetsInput) {
@@ -60,7 +62,7 @@ export default class AjaxSelectInput extends React.Component {
           className={this.props.descriptionClassName}
           text={this.props.description} />
         <Cmp
-          ref='selectInput'
+          ref={this.selectInputRef}
           autoload={this.props.autoload || this.defaultOptions().length > 0}
           className={`select-input ${this.props.className}`}
           joinValues={this.props.joinValues}
