@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class InputDescription extends React.Component {
+export default function InputDescription(props) {
+  const {
+    className = 'form-input-description'
+  } = props;
 
-  render() {
-    if (this.props.text || this.props.renderIfEmpty) {
-      return (
-        <div 
-          className={this.props.className}>
-          {this.props.text}
-        </div>
-      );
-    } else {
-      return null;
-    }
+  if (props.text || props.renderIfEmpty) {
+    return (
+      <div 
+        className={className}>
+        {props.text}
+      </div>
+    );
+  } else {
+    return null;
   }
 }
-
 InputDescription.propTypes = {
   text: PropTypes.oneOfType([
     PropTypes.string,
@@ -26,8 +26,6 @@ InputDescription.propTypes = {
   className: PropTypes.string,
   renderIfEmpty: PropTypes.bool
 };
-InputDescription.defaultProps = {
-  className: 'form-input-description'
-};
+
 
 

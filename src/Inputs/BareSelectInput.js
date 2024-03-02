@@ -5,16 +5,20 @@ import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 
-export default class BareSelectInput extends React.Component {
-  constructor(props) {
-    super(props);
+export default function BareSelectInput(props) {
+  const {
+    errors: errorsFromProps = {},
+    labelClassName = '',
+    className = '',
+    defaultValue = 'default'
+  } = props;
+  
+  function handleChange(e){
+    props.onChange && props.onChange(e.target.value);
   }
-  handleChange(e){
-    this.props.onChange && this.props.onChange(e.target.value);
-  }
-  renderOptions(){
+  function renderOptions(){
     let options = []
-    this.props.options.map((option, i) => {
+    props.options.map((option, i) => {
       options.push(
         <option 
           key={i + '-' + option.name}
@@ -25,33 +29,31 @@ export default class BareSelectInput extends React.Component {
     });
     return options;
   }
-  render() {
-    let errors = this.props.errors[this.props.name];
-    let errorClassName = (errors ? ' field_with_errors ' : '');   
-    return (
-      <div className={`form-input select-input--wrapper input-${this.props.name} ${errorClassName}`}>
-        <Label
-          field={this.props.name}
-          text={this.props.label}
-          className={`form-label select-input--label ${this.props.labelClassName}`} />
-        <InputDescription 
-          className={this.props.descriptionClassName}
-          text={this.props.description} />
-        <select 
-          name={this.props.name}
-          className={`select-input ${this.props.className}`}
-          defaultValue={this.props.defaultValue || 'default'}
-          onChange={(e)=>{this.handleChange(e)}} >
-          <option disabled value='default'>{this.props.prompt}</option>
-          {this.renderOptions()}
-        </select>
-        <Hint text={this.props.hint} />
-        <FieldErrors 
-          name={this.props.name}
-          errors={errors} />
-      </div>
-    );
-  }
+  const errors = errorsFromProps[props.name];
+  const errorClassName = (errors ? ' field_with_errors ' : '');   
+  return (
+    <div className={`form-input select-input--wrapper input-${props.name} ${errorClassName}`}>
+      <Label
+        field={props.name}
+        text={props.label}
+        className={`form-label select-input--label ${labelClassName}`} />
+      <InputDescription 
+        className={props.descriptionClassName}
+        text={props.description} />
+      <select 
+        name={props.name}
+        className={`select-input ${className}`}
+        defaultValue={defaultValue || 'default'}
+        onChange={(e)=>{handleChange(e)}} >
+        <option disabled value='default'>{props.prompt}</option>
+        {renderOptions()}
+      </select>
+      <Hint text={props.hint} />
+      <FieldErrors 
+        name={props.name}
+        errors={errors} />
+    </div>
+  );
 }
 
 BareSelectInput.propTypes = {
@@ -68,13 +70,5 @@ BareSelectInput.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   options: PropTypes.array,
-  prompt: PropTypes.string,
-  wrapperClassName: PropTypes.string
+  prompt: PropTypes.string
 };
-BareSelectInput.defaultProps = {
-  errors: {},
-  labelClassName: '',
-  className: '',
-  wrapperClassName: '',
-  defaultValue: 'default'
-}

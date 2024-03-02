@@ -1,13 +1,12 @@
 import React from 'react';
 import TextInput from './TextInput';
 
-const PasswordInput = props => {
+function PasswordInput(props) {
   return (
-    <TextInput 
+    <TextInput
       {...props}
-      password={true}
-    />
+      password={true} />
   );
-};
+}
 
 export default PasswordInput;

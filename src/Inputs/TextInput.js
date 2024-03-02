@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Numeral from 'numeral';
@@ -14,67 +14,66 @@ Numeral.register('locale', 'en-custom', {
 });
 Numeral.locale('en-custom');
 
-export default class TextInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.defaultValue,
-      formattedValue: this.formatValue(this.props.defaultValue),
-      focused: false
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.newValue != nextProps.newValue){
-      this.setValue(nextProps.newValue);
-    }
-  }
-  setValue(value){
-    value = this.cleanValue(value);
-    const formattedValue = this.formatValue(value);
+export default function TextInput(props) {
+  const {
+    autoFocus = false,
+    errors:errorsFromProps = {},
+    format = 'none',
+    defaultValue = '',
+    newValue = '',
+    autoFill = ''
+  } = props;
 
-    this.setState({
-      value: value,
-      formattedValue: formattedValue
-    });
-    this.props.onChange && this.props.onChange(value, formattedValue);
+  const [value, setValue] = useState(defaultValue);
+  const [formattedValue, setFormattedValue] = useState(formatValue(defaultValue));
+  const [focused, setFocused] = useState(false);
+
+  useEffect(()=>{
+    setNextValue(newValue);
+  },[newValue]);
+
+  function setNextValue(nextValue){
+    const cleanedValue = cleanValue(nextValue);
+    const formattedValue = formatValue(cleanedValue);
+
+    setValue(nextValue);
+    setFormattedValue(formattedValue);
+
+    props.onChange && props.onChange(nextValue, formattedValue);
   }
-  handleChange(e){
-    this.setValue(e.target.value);
+  function handleChange(e){
+    setNextValue(e.target.value);
   }
-  handleFocus(e){
-    this.setState({
-      focused: true
-    });
-    this.props.onFocus && this.props.onFocus(this.state.value, this.state.formattedValue);
+  function handleFocus(e){
+    setFocused(true);
+    props.onFocus && props.onFocus(value, formattedValue);
   }
-  handleBlur(e){
-    this.setState({
-      focused: false
-    });
-    this.props.onBlur && this.props.onBlur(this.state.value, this.state.formattedValue);
+  function handleBlur(e){
+    setFocused(false);
+    props.onBlur && props.onBlur(value, formattedValue);
   }
-  trimValue(value){
-    if (this.props.maxLength) {
-      return value.slice(0, this.props.maxLength);
+  function trimValue(v){
+    if (props.maxLength) {
+      return v.slice(0, props.maxLength);
     } else {
-      return value;
+      return v;
     }
   }
-  uniqArray(inArr){
+  function uniqArray(inArr){
     return inArr.filter((elem, pos, newArr) => {
       return newArr.indexOf(elem) == pos;
     });
   }
-  allZeros(value){
-    const values = this.uniqArray(value.toString().split('').map((v)=>{return v}));
+  function allZeros(v){
+    const values = uniqArray(v.toString().split('').map((v)=>{return v}));
     return (values.length == 1) && (values[0] == "0");
   }
-  cleanValue(value){
-    let newVal = this.trimValue(value);
+  function cleanValue(v){
+    let newVal = trimValue(v);
 
-    switch (this.props.format) {
+    switch (format) {
       case 'number':
-        if (this.allZeros(newVal)) {
+        if (allZeros(newVal)) {
           return newVal;
         } else {
           return Numeral(newVal).format('0');
@@ -85,51 +84,49 @@ export default class TextInput extends React.Component {
         return Slugify(newVal, {remove: /[$*+~#.`()#%^=\[\]{};,\\\/\?'"‘’“”!:@]/g});
       case 'none':
       default:
-        return value;
+        return v;
     }
   }
-  formatValue(value){
-    switch (this.props.format) {
+  function formatValue(v){
+    switch (format) {
       case 'number':
-        return Numeral(value).format(',');
+        return Numeral(v).format(',');
       case 'unformattedNumber':
-        return Numeral(value).format('0');
+        return Numeral(v).format('0');
       case 'none':
       default:
-        return value;
+        return v;
     }
   }
-  render() {
-    let errors = this.props.errors[this.props.name];
-    let errorClassName = (errors ? ' field_with_errors ' : '');
-    
-    return (
-      <div className={`form-input text-input--wrapper input-${this.props.name} ${errorClassName}`}>
-        <Label
-          field={this.props.name}
-          text={this.props.label}
-          className={`form-label text-input--label ${this.props.labelClassName}`} />
-        <InputDescription 
-          className={this.props.descriptionClassName}
-          text={this.props.description} />
-        <input 
-          autoComplete={this.props.autoFill}
-          autoFocus={this.props.autoFocus}
-          type={this.props.password ? 'password' : 'text'}
-          name={this.props.name}
-          className={`text-input ${this.props.className}`}
-          value={(this.state.focused ? this.state.value : this.state.formattedValue) || ''}
-          onFocus={(e)=>this.handleFocus(e)}
-          onBlur={(e)=>this.handleBlur(e)}
-          onChange={(e)=>{this.handleChange(e)}}
-          placeholder={this.props.placeholder} />
-        <Hint text={this.props.hint} />
-        <FieldErrors 
-          name={this.props.name}
-          errors={errors} />
-      </div>
-    );
-  }
+  const errors = errorsFromProps[props.name];
+  const errorClassName = (errors ? ' field_with_errors ' : '');
+  
+  return (
+    <div className={`form-input text-input--wrapper input-${props.name} ${errorClassName}`}>
+      <Label
+        field={props.name}
+        text={props.label}
+        className={`form-label text-input--label ${props.labelClassName}`} />
+      <InputDescription 
+        className={props.descriptionClassName}
+        text={props.description} />
+      <input 
+        autoComplete={autoFill}
+        autoFocus={autoFocus}
+        type={props.password ? 'password' : 'text'}
+        name={props.name}
+        className={`text-input ${props.className}`}
+        value={(focused ? value : formattedValue) || ''}
+        onFocus={(e)=>handleFocus(e)}
+        onBlur={(e)=>handleBlur(e)}
+        onChange={(e)=>{handleChange(e)}}
+        placeholder={props.placeholder} />
+      <Hint text={props.hint} />
+      <FieldErrors 
+        name={props.name}
+        errors={errors} />
+    </div>
+  );
 }
 
 TextInput.propTypes = {
@@ -156,11 +153,3 @@ TextInput.propTypes = {
   newValue: PropTypes.string,
   autoFill: PropTypes.string
 };
-TextInput.defaultProps = {
-  autoFocus: false,
-  errors: {},
-  format: 'none',
-  defaultValue: '',
-  newValue: '',
-  autoFill: ''
-}

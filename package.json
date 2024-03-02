@@ -1,6 +1,6 @@
 {
   "name": "st-react-forms",
-  "version": "0.3.44",
+  "version": "1.0.0-rc.0",
   "description": "Reusable form elements and validation system for react",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^17.0.0",
     "react-select": "^1.2.1",
     "slugify": "^1.2.9",
     "uid": "^2.0.0"

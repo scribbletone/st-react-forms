@@ -11,12 +11,8 @@ import SelectInput from '../Inputs/SelectInput';
 import TextArea from '../Inputs/TextArea';
 import TextInput from '../Inputs/TextInput';
 
-
-export default class InputList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  findComponent(field){
+export default function InputList(props) {
+  function findComponent(field){
     switch (field.componentName) {
       case 'AjaxSelectInput':
         return AjaxSelectInput;
@@ -41,38 +37,37 @@ export default class InputList extends React.Component {
         return TextInput;
     }
   }
-  renderFields() {
-    return this.props.fields.map((field)=>{
+  function renderFields() {
+    return props.fields.map((field)=>{
       if (field) {
-        let Cmp = this.findComponent(field);
+        let Cmp = findComponent(field);
         return (
           <Cmp
-            errors={this.props.errors}
+            errors={props.errors}
             key={field.name}
             name={field.name}
             label={field.label}
             hint={field.hint}
             inlineLabel={field.inlineLabel}
             description={field.description}
-            onChange={(v)=>{this.props.onInputChange(field.name, v, field.dataType)}}
-            onItemSelect={(v)=>{this.props.onItemSelect(field.name, v)}}
-            onLoadOptions={(v,c)=>{this.props.onLoadOptions(field.name, v,c)}}
-            defaultValue={this.props.data[field.name]}
-            value={this.props.data[field.name]}
+            onChange={(v)=>{props.onInputChange(field.name, v, field.dataType)}}
+            onItemSelect={(v)=>{props.onItemSelect(field.name, v)}}
+            onLoadOptions={(v,c)=>{props.onLoadOptions(field.name, v,c)}}
+            defaultValue={props.data[field.name]}
+            value={props.data[field.name]}
             {...field.extraProps}
           />
         );
       }
     })
   }
-  render() {
-    return (
-      <div>
-        {this.renderFields()}
-      </div>   
-    );
-  }
+  return (
+    <div>
+      {renderFields()}
+    </div>   
+  );
 }
+
 InputList.propTypes = {
   fields: PropTypes.array.isRequired,
   onInputChange: PropTypes.func.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
@@ -6,114 +6,136 @@ import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 import ReactSelect from 'react-select';
 import 'react-select/dist/react-select.css';
+import {useTimeout} from '../Hooks/UseTimeout';
 
-export default class AjaxSelectInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value
-    }
-    this.requestTimer;
+export default function AjaxSelectInput(props) {
+  const {
+    allowEmptySearch = false,
+    autoload = false,
+    className = '',
+    defaultOptions:defaultOptionsFromProps = [],
+    errors:errorsFromProps = {},
+    joinValues = true,
+    labelClassName = '',
+    labelKey = 'label',
+    multi = false,
+    name = 'text-array',
+    placeholder = 'Search...',
+    requestBuffer = 500,
+    simpleValue = true,
+    wrapperClassName = '',
+    valueKey = 'value'
+  } = props;
 
-    this.selectInputRef = React.createRef();
-  }
-  handleItemSelect(value) {
-    if (this.props.onSelectResetsInput) {
-      this.setState({
-        value: null
-      });
+  const [value, setValue] = useState(props.value || '');
+  
+  const [isTyping, setIsTyping] = useState(false);
+  const selectInputRef = useRef(null);
+
+  const typingValue = useRef(props.value || '');
+  const loadOptionsCallbackRef = useRef(null);
+
+  useTimeout(() => {
+    props.onLoadOptions(typingValue.current, (options)=>{
+      loadOptionsCallbackRef.current && loadOptionsCallbackRef.current(null, {options})
+    });
+    setIsTyping(false);
+  }, isTyping ? requestBuffer : null);
+
+  function handleItemSelect(v) {
+    if (props.onSelectResetsInput) {
+      setValue(null);
     } else {
-      this.setState({ value });
+      setValue(v);
     }
-    this.props.onItemSelect && this.props.onItemSelect(value)
+    props.onItemSelect && props.onItemSelect(value)
   }
-  handleInputChange(value) {
-    this.props.onInputChange && this.props.onInputChange(value);
+  function handleInputChange(value) {
+    props.onInputChange && props.onInputChange(value);
   }
-  handleLoadOptions(input, callback) {
-    clearTimeout(this.requestTimer);
-    if (input || this.props.allowEmptySearch) {
-      this.requestTimer = setTimeout(()=>{
-        this.props.onLoadOptions(input, (options)=>{
-          callback(null, {options})
-        });
-      }, this.props.requestBuffer);
+  function handleLoadOptions(input, callback) {
+    // callback(null, {options: defaultOptions()})
+    if (input || allowEmptySearch) {
+      setIsTyping(true);
+      // move to timeout
+      loadOptionsCallbackRef.current = callback;
+      typingValue.current = input
     } else {
-      callback(null, {options: this.defaultOptions()})
+      loadOptionsCallbackRef.current = null;
+      typingValue.current = input
+      callback(null, {options: defaultOptions()})
     }
-    
   }
-  defaultOptions() {
-    return this.props.defaultOptions.filter((opt)=>{
+  function defaultOptions() {
+    return defaultOptionsFromProps.filter((opt)=>{
       return opt;
     });
   }
-  render() {
-    let errors = this.props.errors[this.props.name];
-    let errorClassName = (errors ? ' field_with_errors ' : '');
-    let Cmp = (this.props.creatable ? ReactSelect.AsyncCreatable : ReactSelect.Async);
-    return (
-      <div className={`form-input select-input--wrapper input-${this.props.name} ${errorClassName} ${this.props.wrapperClassName}`}>
-        <Label
-          field={this.props.name}
-          text={this.props.label}
-          className={`form-label select-input--label ${this.props.labelClassName}`} />
-        <InputDescription 
-          className={this.props.descriptionClassName}
-          text={this.props.description} />
-        <Cmp
-          ref={this.selectInputRef}
-          autoload={this.props.autoload || this.defaultOptions().length > 0}
-          className={`select-input ${this.props.className}`}
-          joinValues={this.props.joinValues}
-          labelKey={this.props.labelKey}
-          loadOptions={(i,c)=>{this.handleLoadOptions(i,c)}}
-          multi={this.props.multi}
-          name={this.props.name}
-          onChange={(v)=>{this.handleItemSelect(v)}}
-          onInputChange={(v)=>{this.handleInputChange(v)}}
-          placeholder={this.props.placeholder}
-          simpleValue={this.props.simpleValue}
-          value={this.state.value}
-          valueKey={this.props.valueKey}
-          valueRenderer={this.props.renderValue}
-          valueComponent={this.props.valueComponent}
-          optionRenderer={this.props.optionRenderer}
-          optionComponent={this.props.optionComponent}
-          
-          openOnFocus={this.props.openOnFocus}
-          openOnClick={this.props.openOnClick}
-          autosize={this.props.autosize}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
+  const errors = errorsFromProps[name];
+  const errorClassName = (errors ? ' field_with_errors ' : '');
+  const Cmp = (props.creatable ? ReactSelect.AsyncCreatable : ReactSelect.Async);
+  return (
+    <div className={`form-input select-input--wrapper input-${name} ${errorClassName} ${wrapperClassName}`}>
+      <Label
+        field={name}
+        text={props.label}
+        className={`form-label select-input--label ${labelClassName}`} />
+      <InputDescription 
+        className={props.descriptionClassName}
+        text={props.description} />
+      <Cmp
+        ref={selectInputRef}
+        autoload={autoload || defaultOptions().length > 0}
+        className={`select-input ${className}`}
+        joinValues={joinValues}
+        labelKey={labelKey}
+        loadOptions={(i,c)=>{handleLoadOptions(i,c)}}
+        multi={multi}
+        name={name}
+        onChange={(v)=>{handleItemSelect(v)}}
+        onInputChange={(v)=>{handleInputChange(v)}}
+        placeholder={placeholder}
+        simpleValue={simpleValue}
+        value={value}
+        valueKey={valueKey}
+        valueRenderer={props.renderValue}
+        valueComponent={props.valueComponent}
+        optionRenderer={props.optionRenderer}
+        optionComponent={props.optionComponent}
+        
+        openOnFocus={props.openOnFocus}
+        openOnClick={props.openOnClick}
+        autosize={props.autosize}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
 
-          onSelectResetsInput={this.props.onSelectResetsInput}
-          filterOptions={this.props.filterOptions}
-          filterOption={this.props.filterOption}
-          cache={this.props.cache}
-          autoBlur={this.props.autoBlur}
-          noResultsText={this.props.noResultsText}
-          searchPromptText={this.props.searchPromptText}
+        onSelectResetsInput={props.onSelectResetsInput}
+        filterOptions={props.filterOptions}
+        filterOption={props.filterOption}
+        cache={props.cache}
+        autoBlur={props.autoBlur}
+        noResultsText={props.noResultsText}
+        searchPromptText={props.searchPromptText}
 
-          autoComplete={this.props.autoComplete}
-          inputProps={{name: 'search', autoComplete: this.props.autoFill}}
+        autoComplete={props.autoComplete}
+        inputProps={{name: 'search', autoComplete: props.autoFill}}
 
-          // creatable props
-          isOptionUnique={this.props.isOptionUnique}
-          isValidNewOption={this.props.isValidNewOption}
-          newOptionCreator={this.props.newOptionCreator}
-          onNewOptionClick={this.props.onNewOptionClick}
-          shouldKeyDownEventCreateNewOption={this.props.shouldKeyDownEventCreateNewOption}
-          promptTextCreator={this.props.promptTextCreator}
-        />
-        <Hint text={this.props.hint} />
-        <FieldErrors 
-          name={this.props.name}
-          errors={errors} />
-      </div>
-    );
-  }
+        // creatable props
+        isOptionUnique={props.isOptionUnique}
+        isValidNewOption={props.isValidNewOption}
+        newOptionCreator={props.newOptionCreator}
+        onNewOptionClick={props.onNewOptionClick}
+        shouldKeyDownEventCreateNewOption={props.shouldKeyDownEventCreateNewOption}
+        promptTextCreator={props.promptTextCreator}
+      />
+      <Hint text={props.hint} />
+      <FieldErrors 
+        name={name}
+        errors={errors} />
+    </div>
+  );
 }
+
 AjaxSelectInput.propTypes = {
   onLoadOptions: PropTypes.func.isRequired,
   allowEmptySearch: PropTypes.bool,
@@ -141,22 +163,4 @@ AjaxSelectInput.propTypes = {
     PropTypes.object
   ]),
   valueKey: PropTypes.string
-};
-AjaxSelectInput.defaultProps = {
-  allowEmptySearch: false,
-  autoload: false,
-  className: '',
-  defaultOptions: [],
-  errors: {},
-  joinValues: true,
-  labelClassName: '',
-  labelKey: 'label',
-  multi: false,
-  name: 'text-array',
-  placeholder: 'Search...',
-  requestBuffer: 500,
-  simpleValue: true,
-  wrapperClassName: '',
-  value: '',
-  valueKey: 'value'
 };

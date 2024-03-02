@@ -1,33 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 
-export default class Checkboxes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.defaultValue || '',
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.newValue != nextProps.newValue){
-      this.setValue(nextProps.newValue, this.props.preventUpdateOnNewValue);
-    }
-  }
-  setValue(value, preventUpdateOnNewValue){
-    this.setState({
-      value: value
-    });
+export default function Checkboxes(props) {
+  const {
+    errors:errorsFromProps = {},
+    defaultValue = '',
+    newValue = null,
+    options = []
+  } = props;
+
+  const [value, setValue] = useState(defaultValue);
+
+  useEffect(()=>{
+    setNextValue(newValue, props.preventUpdateOnNewValue);
+  },[newValue]);
+
+  function setNextValue(nextValue, preventUpdateOnNewValue){
+    setValue(nextValue);
+
     if (!preventUpdateOnNewValue) {
-      this.props.onChange && this.props.onChange(value);
+      props.onChange && props.onChange(nextValue);
     }
   }
-  handleChange(r, optionValue){
-    let values = this.state.value.split(',');
-    if (this.optionChecked(optionValue)) {
+  function handleChange(r, optionValue){
+    let values = value.split(',');
+    if (optionChecked(optionValue)) {
       values = values.filter((v)=>{
         return v != optionValue;
       })
@@ -35,25 +36,25 @@ export default class Checkboxes extends React.Component {
       values.push(optionValue);
     }
     values = values.filter((v)=>{return v != ''})
-    this.setValue(values.join(','));
+    setNextValue(values.join(','));
   }
-  optionChecked(value){
-    return this.state.value.split(',').indexOf(value) >= 0;
+  function optionChecked(v){
+    return v.split(',').indexOf(v) >= 0;
   }
-  renderOptions(){
-    return this.props.options.map((option)=>{
-      const checkedClass = this.optionChecked(option.value) ? 'checkbox-input--checked' : '';
+  function renderOptions(){
+    return options.map((option)=>{
+      const checkedClass = optionChecked(option.value) ? 'checkbox-input--checked' : '';
       return (
         <label 
           key={`option-${option.value}`}
           className={`checkbox-input ${checkedClass}`}>
           <input 
-            name={this.props.name}
+            name={props.name}
             type="checkbox" 
             value={option.value} 
             className='checkbox-input--option'
-            checked={this.optionChecked(option.value)}
-            onChange={(r)=>{this.handleChange(r, option.value)}}
+            checked={optionChecked(option.value)}
+            onChange={(r)=>{handleChange(r, option.value)}}
           />
           <span className='checkbox-input--option-label'>
             {option.label}
@@ -62,29 +63,27 @@ export default class Checkboxes extends React.Component {
       )
     });
   }
-  render() {
-    let errors = this.props.errors[this.props.name];
-    let errorClassName = (errors ? ' field_with_errors ' : '');
-    
-    return (
-      <div className={`form-input checkbox-input--wrapper input-${this.props.name} ${errorClassName}`}>
-        <Label
-          field={this.props.name}
-          text={this.props.label}
-          className={`form-label checkbox-input--label ${this.props.labelClassName}`} />
-        <InputDescription 
-          className={this.props.descriptionClassName}
-          text={this.props.description} />
-        <div className='checkbox-input--checkboxes'>
-          {this.renderOptions()}
-        </div>
-        <Hint text={this.props.hint} />
-        <FieldErrors 
-          name={this.props.name}
-          errors={errors} />
+  const errors = errorsFromProps[props.name];
+  const errorClassName = (errors ? ' field_with_errors ' : '');
+  
+  return (
+    <div className={`form-input checkbox-input--wrapper input-${props.name} ${errorClassName}`}>
+      <Label
+        field={props.name}
+        text={props.label}
+        className={`form-label checkbox-input--label ${props.labelClassName}`} />
+      <InputDescription 
+        className={props.descriptionClassName}
+        text={props.description} />
+      <div className='checkbox-input--checkboxes'>
+        {renderOptions()}
       </div>
-    );
-  }
+      <Hint text={props.hint} />
+      <FieldErrors 
+        name={props.name}
+        errors={errors} />
+    </div>
+  );
 }
 
 Checkboxes.propTypes = {
@@ -102,10 +101,3 @@ Checkboxes.propTypes = {
   options: PropTypes.array,
   preventUpdateOnNewValue: PropTypes.bool
 };
-Checkboxes.defaultProps = {
-  errors: {},
-  format: 'none',
-  defaultValue: '',
-  newValue: null,
-  options: []
-}

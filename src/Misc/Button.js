@@ -1,35 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Button extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleClick(){
-    !this.props.disabled && this.props.onClick && this.props.onClick();
-  }
-  render() {
-    const isDisabled = (this.props.disabled || this.props.submitting);
-    const disabledClass = (isDisabled ? ' disabled' : '');
-    const hrefProp = this.props.href ? {href: this.props.href} : '';
-    const targetProp = this.props.target ? {target: this.props.target} : '';
-    const submittingClass = (this.props.submitting ? 'btn--submitting' : '');
+export default function Button(props) {
+  const {
+    className = '',
+    type = 'button'
+  } = props;
 
-    let Cmp = (this.props.href ? 'a' : 'button');
-
-    return (
-      <Cmp
-        type={this.props.type}
-        disabled={isDisabled}
-        className={`btn ${this.props.className} ${disabledClass} ${submittingClass}`}
-        onClick={()=>{this.handleClick()}} 
-        {...targetProp}
-        {...hrefProp}>
-        {this.props.children}
-      </Cmp>
-    );
+  function handleClick(){
+    !props.disabled && props.onClick && props.onClick();
   }
+  const isDisabled = (props.disabled || props.submitting);
+  const disabledClass = (isDisabled ? ' disabled' : '');
+  const hrefProp = props.href ? {href: props.href} : '';
+  const targetProp = props.target ? {target: props.target} : '';
+  const submittingClass = (props.submitting ? 'btn--submitting' : '');
+
+  let Cmp = (props.href ? 'a' : 'button');
+
+  return (
+    <Cmp
+      type={type}
+      disabled={isDisabled}
+      className={`btn ${className} ${disabledClass} ${submittingClass}`}
+      onClick={()=>{handleClick()}} 
+      {...targetProp}
+      {...hrefProp}>
+      {props.children}
+    </Cmp>
+  );
 }
+
 Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
@@ -37,7 +38,4 @@ Button.propTypes = {
   href: PropTypes.string,
   type: PropTypes.string
 };
-Button.defaultProps = {
-  className: '',
-  type: 'button'
-};
+

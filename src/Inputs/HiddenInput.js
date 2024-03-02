@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Hint from '../Misc/Hint';
 
-export default class HiddenInput extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <input 
-        type="hidden"
-        name={this.props.name}
-        value={this.props.value} 
-      />
-    );
-  }
+export default function HiddenInput(props) {
+  return (
+    <input 
+      type="hidden"
+      name={props.name}
+      value={props.value} 
+    />
+  );
 }
-
 HiddenInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -24,6 +17,3 @@ HiddenInput.propTypes = {
   ]),
   name: PropTypes.string.isRequired,
 };
-HiddenInput.defaultProps = {
-  defaultValue: ''
-}
