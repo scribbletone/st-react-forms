@@ -30,12 +30,12 @@ export default function TextInput(props) {
   const [focused, setFocused] = useState(false);
 
   const prevNewValue = usePrevious(newValue);
-
+  
   useEffect(()=>{
     if (newValue != prevNewValue) {
       setNextValue(newValue);
     }
-  },[newValue]);
+  }, [newValue]);
 
   function setNextValue(nextValue){
     const cleanedValue = cleanValue(nextValue);
