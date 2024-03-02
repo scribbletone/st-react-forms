@@ -44,7 +44,7 @@ export default function Checkboxes(props) {
     setNextValue(values.join(','));
   }
   function optionChecked(v){
-    return v.split(',').indexOf(v) >= 0;
+    return value.split(',').indexOf(v) >= 0;
   }
   function renderOptions(){
     return options.map((option)=>{

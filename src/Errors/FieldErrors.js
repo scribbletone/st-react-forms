@@ -4,7 +4,7 @@ export default function FieldErrors(props) {
   if (props.errors) {
     return (
       <span className='error'>
-        {props.errors}
+        {props.errors}{' '}
       </span>
     );
   } else {
