@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import DomStyle from '../Utils/DomStyle';
 import Hint from '../Misc/Hint';
