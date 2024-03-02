@@ -4,6 +4,7 @@ import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
+import {usePrevious} from '../Hooks/UsePrevious';
 
 export default function Checkboxes(props) {
   const {
@@ -15,8 +16,12 @@ export default function Checkboxes(props) {
 
   const [value, setValue] = useState(defaultValue);
 
+  const prevNewValue = usePrevious(newValue);
+
   useEffect(()=>{
-    setNextValue(newValue, props.preventUpdateOnNewValue);
+    if (newValue != prevNewValue) {
+      setNextValue(newValue, props.preventUpdateOnNewValue);
+    }
   },[newValue]);
 
   function setNextValue(nextValue, preventUpdateOnNewValue){

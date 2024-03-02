@@ -6,6 +6,7 @@ import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
 import Slugify from 'slugify';
+import {usePrevious} from '../Hooks/UsePrevious';
 
 Numeral.nullFormat('');
 Numeral.register('locale', 'en-custom', {
@@ -28,8 +29,12 @@ export default function TextInput(props) {
   const [formattedValue, setFormattedValue] = useState(formatValue(defaultValue));
   const [focused, setFocused] = useState(false);
 
+  const prevNewValue = usePrevious(newValue);
+
   useEffect(()=>{
-    setNextValue(newValue);
+    if (newValue != prevNewValue) {
+      setNextValue(newValue);
+    }
   },[newValue]);
 
   function setNextValue(nextValue){

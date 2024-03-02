@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Hint from '../Misc/Hint';
 import FieldErrors from '../Errors/FieldErrors';
 import InputDescription from '../Misc/InputDescription';
+import {usePrevious} from '../Hooks/UsePrevious';
 
 export default function BooleanInput(props) {
   const {
@@ -13,8 +14,12 @@ export default function BooleanInput(props) {
 
   const [value, setValue] = useState(defaultValue);
 
+  const prevNewValue = usePrevious(newValue);
+
   useEffect(()=>{
-    setNextValue(newValue, true);
+    if (newValue != prevNewValue) {
+      setNextValue(newValue, true);
+    }
   }, [newValue]);
 
   function setNextValue(nextValue, ignoreCallback){

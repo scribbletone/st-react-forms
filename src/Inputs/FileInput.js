@@ -4,6 +4,7 @@ import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import InputDescription from '../Misc/InputDescription';
 import FieldErrors from '../Errors/FieldErrors';
+import {usePrevious} from '../Hooks/UsePrevious';
 
 export default function FileInput(props) {
   const {
@@ -14,8 +15,12 @@ export default function FileInput(props) {
 
   const [value, setValue] = useState(defaultValue);
 
+  const prevNewValue = usePrevious(newValue);
+
   useEffect(()=>{
-    setNextValue(newValue);
+    if (newValue != prevNewValue) {
+      setNextValue(newValue);
+    }
   },[newValue]);
 
   function setNextValue(nextValue){

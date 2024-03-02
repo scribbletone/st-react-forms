@@ -5,6 +5,7 @@ import Hint from '../Misc/Hint';
 import Label from '../Misc/Label';
 import FieldErrors from '../Errors/FieldErrors';
 import InputDescription from '../Misc/InputDescription';
+import {usePrevious} from '../Hooks/UsePrevious';
 
 export default function TextArea(props) {
   const {
@@ -22,8 +23,12 @@ export default function TextArea(props) {
 
   const textareaRef = useRef(null);
 
+  const prevNewValue = usePrevious(newValue);
+
   useEffect(()=>{
-    setFilledTextareaHeight();
+    if (newValue != prevNewValue) {
+      setFilledTextareaHeight();
+    }
   },[]);
 
   useEffect(()=>{
