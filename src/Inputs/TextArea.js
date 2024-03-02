@@ -26,13 +26,13 @@ export default function TextArea(props) {
   const prevNewValue = usePrevious(newValue);
 
   useEffect(()=>{
-    if (newValue != prevNewValue) {
-      setFilledTextareaHeight();
-    }
+    setFilledTextareaHeight();
   },[]);
 
   useEffect(()=>{
-    setNextValue(newValue);
+    if (newValue != prevNewValue) {
+      setNextValue(newValue);
+    }
   },[newValue]);
 
   function setNextValue(nextValue){
