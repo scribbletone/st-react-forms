@@ -22,7 +22,8 @@ export default function TextInput(props) {
     format = 'none',
     defaultValue = '',
     newValue = '',
-    autoFill = ''
+    autoFill = '',
+    className:classNameProps = ''
   } = props;
 
   const [value, setValue] = useState(defaultValue);
@@ -120,7 +121,7 @@ export default function TextInput(props) {
         autoFocus={autoFocus}
         type={props.password ? 'password' : 'text'}
         name={props.name}
-        className={`text-input ${props.className}`}
+        className={`text-input ${classNameProps}`}
         value={(focused ? value : formattedValue) || ''}
         onFocus={(e)=>handleFocus(e)}
         onBlur={(e)=>handleBlur(e)}
