@@ -1,3 +1,3 @@
-for x in $(find . -name \*.jsx); do
-  mv $x $(echo "$x" | sed 's/\.jsx$/.js/')
+for x in $(find . -name \*.js); do
+  mv $x $(echo "$x" | sed 's/\.js$/.jsx/')
 done
