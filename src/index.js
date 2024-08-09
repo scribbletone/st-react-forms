@@ -1,4 +1,3 @@
-import AjaxSelectInput from './Inputs/AjaxSelectInput';
 import BareSelectInput from './Inputs/BareSelectInput';
 import BooleanInput from './Inputs/BooleanInput';
 import Checkboxes from './Inputs/Checkboxes';
@@ -6,7 +5,6 @@ import FileInput from './Inputs/FileInput';
 import HiddenInput from './Inputs/HiddenInput';
 import PasswordInput from './Inputs/PasswordInput';
 import RadioOptions from './Inputs/RadioOptions';
-import SelectInput from './Inputs/SelectInput';
 import TextArea from './Inputs/TextArea';
 import TextInput from './Inputs/TextInput';
 
@@ -21,7 +19,6 @@ import GenericFormErrors from './Errors/GenericFormErrors';
 import InputList from './Templates/InputList';
 
 export {
-  AjaxSelectInput,
   BareSelectInput,
   BooleanInput,
   Button,
@@ -33,7 +30,6 @@ export {
   Label,
   PasswordInput,
   RadioOptions,
-  SelectInput,
   TextArea,
   TextInput,
   FieldErrors,
