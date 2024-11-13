@@ -7,8 +7,6 @@ export default function Button(props) {
     type = 'button'
   } = props;
 
-  const isLink = (props.href ? 'a' : 'button');
-
   function handleClick(){
     !props.disabled && props.onClick && props.onClick();
   }
@@ -18,13 +16,11 @@ export default function Button(props) {
   const targetProp = props.target ? {target: props.target} : '';
   const submittingClass = (props.submitting ? 'btn--submitting' : '');
 
-  
+  let Cmp = (props.href ? 'a' : 'button');
 
-  const Cmp = (isLink ? 'a' : 'button');
-  const inputTypeProps = (isLink ? null : {type: type});
   return (
     <Cmp
-      {...inputTypeProps}
+      type={type}
       disabled={isDisabled}
       className={`btn ${className} ${disabledClass} ${submittingClass}`}
       onClick={()=>{handleClick()}} 
