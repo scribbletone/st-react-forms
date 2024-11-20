@@ -32,9 +32,16 @@ export default function InputList(props) {
     }
   }
   function renderFields() {
+    let fieldIndex = 0;
+    const shouldShowTabIndex = typeof props.tabIndexStart !== 'undefined';
+
     return props.fields.map((field)=>{
       if (field) {
         let Cmp = findComponent(field);
+        const tabIndexProp = shouldShowTabIndex ? {
+          tabIndex: fieldIndex + tabIndexStart
+        } : {};
+
         return (
           <Cmp
             errors={props.errors}
@@ -49,9 +56,12 @@ export default function InputList(props) {
             onLoadOptions={(v,c)=>{props.onLoadOptions(field.name, v,c)}}
             defaultValue={props.data[field.name]}
             value={props.data[field.name]}
+            {...tabIndexProp}
             {...field.extraProps}
           />
         );
+
+        fieldIndex += 1;
       }
     })
   }

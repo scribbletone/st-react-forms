@@ -44,6 +44,7 @@ export default function RadioOptions(props) {
             className='radio-input--option'
             checked={(option.value == value)}
             onChange={()=>{handleChange(option.value)}}
+            {...tabIndexProp}
           />
           <span className='radio-input--option-label'>
             {option.label}
@@ -54,6 +55,11 @@ export default function RadioOptions(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
   
   return (
     <div className={`form-input radio-input--wrapper input-${props.name} ${errorClassName}`}>

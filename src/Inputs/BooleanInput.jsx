@@ -37,6 +37,12 @@ export default function BooleanInput(props) {
   const errorClassName = (errors ? ' field_with_errors ' : '');
 
   const safeVal = (value === null) ? '' : value;
+
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
+
   return (
     <div className={`form-input boolean-input--wrapper input-${props.name} ${errorClassName}`}>
 
@@ -56,7 +62,8 @@ export default function BooleanInput(props) {
           className='boolean-input--input'
           value={safeVal}
           checked={safeVal}
-          onChange={(e)=>{handleChange(e)}} 
+          onChange={(e)=>{handleChange(e)}}
+          {...tabIndexProp} 
         />
         <span 
           className="boolean-input--inline-label">

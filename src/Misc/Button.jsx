@@ -16,6 +16,11 @@ export default function Button(props) {
   const targetProp = props.target ? {target: props.target} : '';
   const submittingClass = (props.submitting ? 'btn--submitting' : '');
 
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
+  
   let Cmp = (props.href ? 'a' : 'button');
 
   return (
@@ -24,6 +29,7 @@ export default function Button(props) {
       disabled={isDisabled}
       className={`btn ${className} ${disabledClass} ${submittingClass}`}
       onClick={()=>{handleClick()}} 
+      {...tabIndexProp}
       {...targetProp}
       {...hrefProp}>
       {props.children}

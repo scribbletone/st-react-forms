@@ -60,6 +60,7 @@ export default function Checkboxes(props) {
             className='checkbox-input--option'
             checked={optionChecked(option.value)}
             onChange={(r)=>{handleChange(r, option.value)}}
+            {...tabIndexProp}
           />
           <span className='checkbox-input--option-label'>
             {option.label}
@@ -71,6 +72,11 @@ export default function Checkboxes(props) {
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
   
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
+
   return (
     <div className={`form-input checkbox-input--wrapper input-${props.name} ${errorClassName}`}>
       <Label

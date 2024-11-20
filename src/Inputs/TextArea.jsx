@@ -75,11 +75,17 @@ export default function TextArea(props) {
         onBlur={(e)=>handleBlur(e)}
         onChange={(e)=>{handleChange(e)}}
         placeholder={props.placeholder}
-        style={style} />
+        style={style}
+        {...tabIndexProp} />
       );
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
   
   return (
     <div className={`form-input text-area--wrapper input-${props.name} ${errorClassName}`}>

@@ -32,6 +32,12 @@ export default function FileInput(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
+  
   return (
     <div className={`form-input file-input--wrapper input-${props.name} ${errorClassName}`}>
       <Label
@@ -45,7 +51,8 @@ export default function FileInput(props) {
         type="file" 
         name={props.name}
         className={`file-input ${props.className}`}
-        onChange={(e)=>{handleChange(e)}} />
+        onChange={(e)=>{handleChange(e)}}
+        {...tabIndexProp} />
       <Hint text={props.hint} />
       <FieldErrors 
         name={props.name}

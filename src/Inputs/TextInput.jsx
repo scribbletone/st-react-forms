@@ -106,7 +106,12 @@ export default function TextInput(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
-  
+
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
+
   return (
     <div className={`form-input text-input--wrapper input-${props.name} ${errorClassName}`}>
       <Label
@@ -126,7 +131,8 @@ export default function TextInput(props) {
         onFocus={(e)=>handleFocus(e)}
         onBlur={(e)=>handleBlur(e)}
         onChange={(e)=>{handleChange(e)}}
-        placeholder={props.placeholder} />
+        placeholder={props.placeholder}
+        {...tabIndexProp} />
       <Hint text={props.hint} />
       <FieldErrors 
         name={props.name}

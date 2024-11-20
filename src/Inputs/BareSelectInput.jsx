@@ -30,7 +30,12 @@ export default function BareSelectInput(props) {
     return options;
   }
   const errors = errorsFromProps[props.name];
-  const errorClassName = (errors ? ' field_with_errors ' : '');   
+  const errorClassName = (errors ? ' field_with_errors ' : '');
+  
+  const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
+  const tabIndexProp = shouldShowTabIndex ? {
+    tabIndex: props.tabIndex
+  } : {};
   return (
     <div className={`form-input select-input--wrapper input-${props.name} ${errorClassName}`}>
       <Label
@@ -44,7 +49,8 @@ export default function BareSelectInput(props) {
         name={props.name}
         className={`select-input ${className}`}
         defaultValue={defaultValue || 'default'}
-        onChange={(e)=>{handleChange(e)}} >
+        onChange={(e)=>{handleChange(e)}}
+        {...tabIndexProp} >
         <option disabled value='default'>{props.prompt}</option>
         {renderOptions()}
       </select>
