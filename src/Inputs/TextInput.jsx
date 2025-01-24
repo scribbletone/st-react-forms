@@ -132,6 +132,7 @@ export default function TextInput(props) {
         onBlur={(e)=>handleBlur(e)}
         onChange={(e)=>{handleChange(e)}}
         placeholder={props.placeholder}
+        spellCheck={props.spellCheck}
         {...tabIndexProp} />
       <Hint text={props.hint} />
       <FieldErrors 

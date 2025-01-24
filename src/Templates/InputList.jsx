@@ -56,6 +56,7 @@ export default function InputList(props) {
             onLoadOptions={(v,c)=>{props.onLoadOptions(field.name, v,c)}}
             defaultValue={props.data[field.name]}
             value={props.data[field.name]}
+            spellCheck={props.spellCheck}
             {...tabIndexProp}
             {...field.extraProps}
           />

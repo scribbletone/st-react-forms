@@ -76,6 +76,7 @@ export default function TextArea(props) {
         onChange={(e)=>{handleChange(e)}}
         placeholder={props.placeholder}
         style={style}
+        spellCheck={props.spellCheck}
         {...tabIndexProp} />
       );
   }
