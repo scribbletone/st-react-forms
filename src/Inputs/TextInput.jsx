@@ -112,6 +112,8 @@ export default function TextInput(props) {
     tabIndex: props.tabIndex
   } : {};
 
+  const autoCompleteValue = autoFill || props.name;
+
   return (
     <div className={`form-input text-input--wrapper input-${props.name} ${errorClassName}`}>
       <Label
@@ -122,7 +124,7 @@ export default function TextInput(props) {
         className={props.descriptionClassName}
         text={props.description} />
       <input 
-        autoComplete={autoFill}
+        autoComplete={autoCompleteValue}
         autoFocus={autoFocus}
         type={props.password ? 'password' : 'text'}
         name={props.name}
