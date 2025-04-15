@@ -112,7 +112,7 @@ export default function TextInput(props) {
     tabIndex: props.tabIndex
   } : {};
 
-  const autoCompleteValue = autoFill || props.name;
+  const autoCompleteValue = autoFill || "off";
 
   return (
     <div className={`form-input text-input--wrapper input-${props.name} ${errorClassName}`}>
