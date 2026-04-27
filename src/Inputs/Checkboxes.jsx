@@ -11,7 +11,8 @@ export default function Checkboxes(props) {
     errors:errorsFromProps = {},
     defaultValue = '',
     newValue = null,
-    options = []
+    options = [],
+    className:classNameProps = ''
   } = props;
 
   const [value, setValue] = useState(defaultValue);
@@ -78,7 +79,7 @@ export default function Checkboxes(props) {
   } : {};
 
   return (
-    <div className={`form-input checkbox-input--wrapper input-${props.name} ${errorClassName}`}>
+    <div className={`form-input checkbox-input--wrapper input-${props.name} ${errorClassName} ${classNameProps}`}>
       <Label
         field={props.name}
         text={props.label}
