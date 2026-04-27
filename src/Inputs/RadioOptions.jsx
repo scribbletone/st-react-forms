@@ -70,7 +70,9 @@ export default function RadioOptions(props) {
       <InputDescription 
         className={props.descriptionClassName}
         text={props.description} />
-      {renderOptions()}
+      <div className='radio-input--options'>
+        {renderOptions()}
+      </div>
       <Hint text={props.hint} />
       <FieldErrors 
         name={props.name}
