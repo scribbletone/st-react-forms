@@ -12,7 +12,8 @@ export default function RadioOptions(props) {
     defaultValue = '',
     newValue = null,
     options = [],
-    className:classNameProps = ''
+    className:classNameProps = '',
+    optionClassName = ''
   } = props;
 
   const [value, setValue] = useState(defaultValue);
@@ -37,7 +38,7 @@ export default function RadioOptions(props) {
       return (
         <label 
           key={`option-${option.value}`}
-          className='radio-input'>
+          className={`radio-input ${optionClassName}`}>
           <input 
             name={props.name}
             type="radio" 

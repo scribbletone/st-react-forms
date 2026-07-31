@@ -12,7 +12,8 @@ export default function Checkboxes(props) {
     defaultValue = '',
     newValue = null,
     options = [],
-    className:classNameProps = ''
+    className:classNameProps = '',
+    optionClassName = ''
   } = props;
 
   const [value, setValue] = useState(defaultValue);
@@ -53,7 +54,7 @@ export default function Checkboxes(props) {
       return (
         <label 
           key={`option-${option.value}`}
-          className={`checkbox-input ${checkedClass}`}>
+          className={`checkbox-input ${checkedClass} ${optionClassName}`}>
           <input 
             name={props.name}
             type="checkbox" 
