@@ -43,7 +43,8 @@ export default function RadioOptions(props) {
             name={props.name}
             type="radio" 
             value={option.value} 
-            className='radio-input--option'
+            className={`radio-input--option ${disabledClass}`}
+            disabled={props.disabled}
             checked={(option.value == value)}
             onChange={()=>{handleChange(option.value)}}
             {...tabIndexProp}
@@ -57,6 +58,7 @@ export default function RadioOptions(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+  const disabledClass = (props.disabled ? ' disabled' : '');
 
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
@@ -90,6 +92,7 @@ RadioOptions.propTypes = {
       PropTypes.number,
       PropTypes.bool
   ]),
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,

@@ -69,7 +69,8 @@ export default function TextArea(props) {
         ref={textareaRef}
         autoFocus={autoFocus}
         name={props.name}
-        className={`text-area ${props.className}`}
+        className={`text-area ${props.className} ${disabledClass}`}
+        disabled={props.disabled}
         value={value || ''}
         onFocus={(e)=>handleFocus(e)}
         onBlur={(e)=>handleBlur(e)}
@@ -82,6 +83,7 @@ export default function TextArea(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+  const disabledClass = (props.disabled ? ' disabled' : '');
 
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
@@ -116,6 +118,7 @@ TextArea.propTypes = {
   ]),
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   label: PropTypes.string,
   labelClassName: PropTypes.string,

@@ -31,7 +31,8 @@ export default function BareSelectInput(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
-  
+  const disabledClass = (props.disabled ? ' disabled' : '');
+
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
     tabIndex: props.tabIndex
@@ -47,7 +48,8 @@ export default function BareSelectInput(props) {
         text={props.description} />
       <select 
         name={props.name}
-        className={`select-input ${className}`}
+        className={`select-input ${className} ${disabledClass}`}
+        disabled={props.disabled}
         defaultValue={defaultValue || 'default'}
         onChange={(e)=>{handleChange(e)}}
         {...tabIndexProp} >
@@ -68,6 +70,7 @@ BareSelectInput.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,

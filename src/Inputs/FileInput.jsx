@@ -32,6 +32,7 @@ export default function FileInput(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+  const disabledClass = (props.disabled ? ' disabled' : '');
 
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
@@ -50,7 +51,8 @@ export default function FileInput(props) {
       <input 
         type="file" 
         name={props.name}
-        className={`file-input ${props.className}`}
+        className={`file-input ${props.className} ${disabledClass}`}
+        disabled={props.disabled}
         onChange={(e)=>{handleChange(e)}}
         {...tabIndexProp} />
       <Hint text={props.hint} />
@@ -68,6 +70,7 @@ FileInput.propTypes = {
       PropTypes.number,
       PropTypes.bool
   ]),
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   inlinedescription: PropTypes.string,
   descriptionClassName: PropTypes.string,

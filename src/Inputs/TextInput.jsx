@@ -106,6 +106,7 @@ export default function TextInput(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+  const disabledClass = (props.disabled ? ' disabled' : '');
 
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
@@ -128,7 +129,8 @@ export default function TextInput(props) {
         autoFocus={autoFocus}
         type={props.password ? 'password' : 'text'}
         name={props.name}
-        className={`text-input ${classNameProps}`}
+        className={`text-input ${classNameProps} ${disabledClass}`}
+        disabled={props.disabled}
         value={(focused ? value : formattedValue) || ''}
         onFocus={(e)=>handleFocus(e)}
         onBlur={(e)=>handleBlur(e)}
@@ -151,6 +153,7 @@ TextInput.propTypes = {
       PropTypes.string,
       PropTypes.number
   ]),
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   format: PropTypes.string,
   description: PropTypes.string,

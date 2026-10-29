@@ -35,6 +35,7 @@ export default function BooleanInput(props) {
 
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
+  const disabledClass = (props.disabled ? ' disabled' : '');
 
   const safeVal = (value === null) ? '' : value;
 
@@ -59,7 +60,8 @@ export default function BooleanInput(props) {
         <input 
           type="checkbox" 
           name={props.name} 
-          className='boolean-input--input'
+          className={`boolean-input--input ${disabledClass}`}
+          disabled={props.disabled}
           value={safeVal}
           checked={safeVal}
           onChange={(e)=>{handleChange(e)}}
@@ -85,6 +87,7 @@ BooleanInput.propTypes = {
       PropTypes.number,
       PropTypes.bool
   ]),
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   inlinedescription: PropTypes.string,
   descriptionClassName: PropTypes.string,

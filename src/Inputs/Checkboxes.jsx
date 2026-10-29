@@ -59,7 +59,8 @@ export default function Checkboxes(props) {
             name={props.name}
             type="checkbox" 
             value={option.value} 
-            className='checkbox-input--option'
+            className={`checkbox-input--option ${disabledClass}`}
+            disabled={props.disabled}
             checked={optionChecked(option.value)}
             onChange={(r)=>{handleChange(r, option.value)}}
             {...tabIndexProp}
@@ -73,7 +74,8 @@ export default function Checkboxes(props) {
   }
   const errors = errorsFromProps[props.name];
   const errorClassName = (errors ? ' field_with_errors ' : '');
-  
+  const disabledClass = (props.disabled ? ' disabled' : '');
+
   const shouldShowTabIndex = typeof props.tabIndex !== 'undefined';
   const tabIndexProp = shouldShowTabIndex ? {
     tabIndex: props.tabIndex
@@ -102,6 +104,7 @@ export default function Checkboxes(props) {
 Checkboxes.propTypes = {
   className: PropTypes.string,
   defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
   errors: PropTypes.object,
   description: PropTypes.string,
   descriptionClassName: PropTypes.string,
